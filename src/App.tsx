@@ -1,10 +1,21 @@
-import React from 'react';
+/** @jsxImportSource @emotion/react */
+
+import { css } from '@emotion/react'
+import { theme } from './theme';
+import { Tile } from './components/tile';
+
+const main = css`
+  background: ${theme.colors.secondary};
+  min-height: 100vh;
+  padding: 2rem;
+`
 
 function App() {
   return (
-    <div className="App">
+    <main css={main}>
       Hello
-    </div>
+      <Tile label="hi" />
+    </main>
   );
 }
 
