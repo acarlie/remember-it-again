@@ -2,12 +2,16 @@ const neutralValues = [0, 50, 100, 200, 300, 400, 500]
 type Neutral = `neutral${typeof neutralValues[number]}`
 type Color = 'primary' | 'fuschia' | 'green' | 'lime' | Neutral;
 type ColorValue = `hsla(${string})`
+type RemValue = `${number}rem`
+type Radius = 'small' | 'medium' | 'large'
+
 type Theme = {
-    colors: Record<Color, ColorValue>
+    color: Record<Color, ColorValue>
+    radius: Record<Radius, RemValue>
 }
 
 export const theme: Theme = {
-    colors: {
+    color: {
         fuschia: 'hsla(335, 90%, 61%, 1)',
         green: 'hsla(173, 100%, 36%, 1)',
         lime: 'hsla(73, 87%, 62%, 1)',
@@ -19,6 +23,11 @@ export const theme: Theme = {
         neutral300: 'hsla(241, 30%, 40%, 1)',
         neutral400: 'hsla(241, 30%, 60%, 1)',
         neutral500: 'hsla(240, 29%, 80%, 1)',
+    },
+    radius: {
+        small: '.25rem',
+        medium: '1rem',
+        large: '2rem'
     }
 }
 

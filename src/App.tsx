@@ -6,17 +6,23 @@ import { Tile } from './components/tile';
 import { GameProvider } from './components/game';
 
 const main = css`
-  background: ${theme.colors.neutral500};
+  font-family: 'Space Grotesk', sans-serif;
+  background: ${theme.color.neutral0};
   min-height: 100vh;
   padding: 2rem;
+`
+
+const grid = css`
+  
 `
 
 function App() {
   return (
     <GameProvider>
       <main css={main}>
-        Hello
-        <Tile label="hi" />
+        <section css={grid}>
+          <Tile label="hi" />
+        </section>
       </main>
     </GameProvider>
   );
