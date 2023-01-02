@@ -14,7 +14,17 @@ type GameContextProps = {
     updateTopScore: (score: number) => void
 }
 
-export const GameContext = React.createContext<GameContextProps>({ options: [], topScore: 0, picked: [], status: 'playing', checkAnswer: () => null, restart: () => null, updateTopScore: () => null })
+export const GameContext = React.createContext<GameContextProps>(
+    {
+        options: [],
+        topScore: 0,
+        picked: [],
+        status: 'playing',
+        checkAnswer: () => null,
+        restart: () => null,
+        updateTopScore: () => null
+    }
+)
 
 type GameProviderProps = {
     children: React.ReactNode
@@ -27,7 +37,7 @@ export const GameProvider = ({ children }: GameProviderProps) => {
     const [gameStatus, setGameStatus] = React.useState<Status>('playing')
 
     const checkAnswer = (answer: string) => {
-        const win = picked.length === options.length;
+        const win = picked.length === options.length - 1;
         const lose = picked.includes(answer);
 
         if (lose) {
@@ -55,90 +65,16 @@ export const GameProvider = ({ children }: GameProviderProps) => {
 
 
     return (
-        <GameContext.Provider value={{ options: gameTiles, topScore: topScore, picked: picked, status: gameStatus, checkAnswer, updateTopScore, restart }} >
+        <GameContext.Provider value={{
+            options: gameTiles,
+            topScore: topScore,
+            picked: picked,
+            status: gameStatus,
+            checkAnswer,
+            updateTopScore,
+            restart
+        }} >
             {children}
         </GameContext.Provider >
     )
 }
-
-
-
-
-// class App extends Component {
-//   constructor (props) {
-//       super(props);
-//       this.state = {
-//           colors,
-//           score: 0,
-//           picked: [],
-//           topScore: 0
-//       };
-//       this.modalRef = React.createRef();
-//   }
-
-//   componentDidMount () {
-//       document.addEventListener('keydown', (e) => {
-//           if (e.code === 'Escape') {
-//               this.modalRef.current.closeDialog();
-//           }
-//       });
-//   }
-
-//   shuffle = () => {
-//       const [...colors] = this.state.colors;
-//       for (let i = colors.length - 1; i > 0; i--) {
-//           const j = Math.floor(Math.random() * i);
-//           const temp = colors[i];
-//           colors[i] = colors[j];
-//           colors[j] = temp;
-//       }
-
-//       this.setState({
-//           colors
-//       });
-//   }
-
-//   incrementScore = () => {
-//       const score = this.state.score + 1;
-//       this.setState({
-//           score
-//       });
-//   }
-
-//   setPickedTiles = (id) => {
-//       const picked = this.state.picked.concat([id]);
-//       this.setState({
-//           picked
-//       });
-//   }
-
-//   setTopScore = (score) => {
-//       const topScore = score > this.state.topScore ? score : this.state.topScore;
-//       this.setState({
-//           topScore
-//       });
-//   }
-
-//   resetGame = () => {
-//       this.setState({
-//           picked: [],
-//           score: 0
-//       });
-//   }
-
-//   checkChoice = (event) => {
-//       const id = event.currentTarget.id;
-//       const isValid = this.state.picked.indexOf(id) === -1;
-//       if (isValid) {
-//           this.setPickedTiles(id);
-//           this.shuffle();
-//           this.incrementScore();
-//           if (this.state.score === 11) {
-//               this.modalRef.current.openDialog(12, this.state.topScore);
-//           }
-//       } else {
-//           this.setTopScore(this.state.score);
-//           this.shuffle();
-//           this.modalRef.current.openDialog(this.state.score, this.state.topScore);
-//       }
-//   }
