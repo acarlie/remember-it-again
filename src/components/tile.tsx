@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { theme } from '../theme'
+import { Color, theme } from '../theme'
 import { GameContext } from './game'
 import * as React from 'react'
+import { TileData } from '../constants'
 
-type TileProps = {
-    label: string
-}
 
-const tileStyle = css`
-    background: lightblue;
+
+const tileStyle = (color: Color) => css`
+    background: ${theme.color.neutral200};
+    border: 2px solid ${theme.color[color]};
     border-radius: ${theme.radius.medium};
     padding: 2rem;
     opacity: .8;
@@ -21,10 +21,10 @@ const tileStyle = css`
     }
 `
 
-export const Tile = ({ label }: TileProps) => {
+export const Tile = ({ label, color }: TileData) => {
     const { checkAnswer } = React.useContext(GameContext)
     return (
-        <button css={tileStyle} aria-label={label} onClick={() => checkAnswer(label)}>
+        <button css={tileStyle(color)} aria-label={label} onClick={() => checkAnswer(label)}>
             {label}
         </button>
     )

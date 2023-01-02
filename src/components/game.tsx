@@ -20,7 +20,7 @@ export const GameProvider = ({ children }: GameProviderProps) => {
     const [picked, setPicked] = React.useState<string[]>([])
 
     const checkAnswer = (answer: string) => {
-        console.log('checked')
+        console.log(answer)
     }
 
     const updateTopScore = (score: number) => {
