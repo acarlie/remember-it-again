@@ -1,11 +1,11 @@
 import { Color } from './theme'
 
-export type TileData = {
+export type OptionData = {
     label: string
     color: Color
 }
 
-export const tiles: TileData[] = [
+export const options: OptionData[] = [
     {
         label: 'Planet 1',
         color: 'fuschia'

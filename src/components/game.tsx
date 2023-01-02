@@ -1,116 +1,44 @@
+/** @jsxImportSource @emotion/react */
+
+import { css } from '@emotion/react'
+import { GameContext } from './game-provider'
+import { theme } from '../theme';
+import { Tile } from './tile';
 import * as React from 'react'
 
-type GameContextProps = {
-    currentScore: number,
-    topScore: number,
-    picked: string[],
-    checkAnswer: (answer: string) => void
-    updateTopScore: (score: number) => void
-}
+const main = css`
+  align-items: center;
+  background: ${theme.color.neutral0};
+  color: ${theme.color.neutral500};
+  display: flex;
+  font-family: 'Space Grotesk', sans-serif;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+`
 
-export const GameContext = React.createContext<GameContextProps>({ currentScore: 0, topScore: 0, picked: [], checkAnswer: () => null, updateTopScore: () => null })
+const grid = css`
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: repeat(3, 1fr);
+  max-width: 40rem;
+`
 
-type GameProviderProps = {
-    children: React.ReactNode
-}
-
-export const GameProvider = ({ children }: GameProviderProps) => {
-    const [currentScore, setCurrentScore] = React.useState<number>(0)
-    const [topScore, setTopScore] = React.useState<number>(0)
-    const [picked, setPicked] = React.useState<string[]>([])
-
-    const checkAnswer = (answer: string) => {
-        console.log(answer)
-    }
-
-    const updateTopScore = (score: number) => {
-        console.log('update top')
-    }
+export const Game = () => {
+    const { picked, options } = React.useContext(GameContext)
     return (
-        <GameContext.Provider value={{ currentScore: currentScore, topScore: topScore, picked: picked, checkAnswer, updateTopScore }} >
-            {children}
-        </GameContext.Provider >
+        <main css={main}>
+            <div>
+                <div>
+                    Score: {picked.length}
+                </div>
+                <section css={grid}>
+                    {options.map(tile => <Tile key={tile.label} {...tile} />)}
+                </section>
+            </div>
+        </main>
+
     )
 }
-
-
-
-
-// class App extends Component {
-//   constructor (props) {
-//       super(props);
-//       this.state = {
-//           colors,
-//           score: 0,
-//           picked: [],
-//           topScore: 0
-//       };
-//       this.modalRef = React.createRef();
-//   }
-
-//   componentDidMount () {
-//       document.addEventListener('keydown', (e) => {
-//           if (e.code === 'Escape') {
-//               this.modalRef.current.closeDialog();
-//           }
-//       });
-//   }
-
-//   shuffleArray = () => {
-//       const [...colors] = this.state.colors;
-//       for (let i = colors.length - 1; i > 0; i--) {
-//           const j = Math.floor(Math.random() * i);
-//           const temp = colors[i];
-//           colors[i] = colors[j];
-//           colors[j] = temp;
-//       }
-
-//       this.setState({
-//           colors
-//       });
-//   }
-
-//   incrementScore = () => {
-//       const score = this.state.score + 1;
-//       this.setState({
-//           score
-//       });
-//   }
-
-//   setPicked = (id) => {
-//       const picked = this.state.picked.concat([id]);
-//       this.setState({
-//           picked
-//       });
-//   }
-
-//   setTopScore = (score) => {
-//       const topScore = score > this.state.topScore ? score : this.state.topScore;
-//       this.setState({
-//           topScore
-//       });
-//   }
-
-//   resetGame = () => {
-//       this.setState({
-//           picked: [],
-//           score: 0
-//       });
-//   }
-
-//   checkChoice = (event) => {
-//       const id = event.currentTarget.id;
-//       const isValid = this.state.picked.indexOf(id) === -1;
-//       if (isValid) {
-//           this.setPicked(id);
-//           this.shuffleArray();
-//           this.incrementScore();
-//           if (this.state.score === 11) {
-//               this.modalRef.current.openDialog(12, this.state.topScore);
-//           }
-//       } else {
-//           this.setTopScore(this.state.score);
-//           this.shuffleArray();
-//           this.modalRef.current.openDialog(this.state.score, this.state.topScore);
-//       }
-//   }
