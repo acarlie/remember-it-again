@@ -2,16 +2,12 @@
 
 import { css } from '@emotion/react'
 import { GameContext } from './game-provider'
-import { theme } from '../theme';
 import { Tile } from './tile';
 import * as React from 'react'
 
 const main = css`
   align-items: center;
-  background: ${theme.color.neutral0};
-  color: ${theme.color.neutral500};
   display: flex;
-  font-family: 'Space Grotesk', sans-serif;
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;

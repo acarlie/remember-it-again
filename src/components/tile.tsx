@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Color, theme } from '../theme'
+import { Color, theme } from '../theme/theme'
 import { GameContext } from './game-provider'
 import * as React from 'react'
 import { OptionData } from '../constants'

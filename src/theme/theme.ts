@@ -1,4 +1,4 @@
-const neutralValues = [0, 50, 100, 200, 300, 400, 500]
+const neutralValues = [0, 50, 100, 200, 300, 400, 500, 600]
 type Neutral = `neutral${typeof neutralValues[number]}`
 export type Color = 'primary' | 'fuschia' | 'green' | 'lime' | Neutral;
 type ColorValue = `hsla(${string})`
@@ -23,6 +23,7 @@ export const theme: Theme = {
         neutral300: 'hsla(241, 30%, 40%, 1)',
         neutral400: 'hsla(241, 30%, 60%, 1)',
         neutral500: 'hsla(240, 29%, 80%, 1)',
+        neutral600: 'hsla(240, 30%, 96%, 1)',
     },
     radius: {
         small: '.25rem',
@@ -31,3 +32,4 @@ export const theme: Theme = {
     }
 }
 
+export const updateOpacity = (color: ColorValue, opacity: number) => opacity <= 1 && opacity >= 0 ? color.replace('1)', `${opacity})`) : color

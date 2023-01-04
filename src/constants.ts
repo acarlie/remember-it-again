@@ -1,4 +1,4 @@
-import { Color } from './theme'
+import { Color } from './theme/theme'
 
 export type OptionData = {
     label: string

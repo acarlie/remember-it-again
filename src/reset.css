@@ -53,6 +53,10 @@ table {
 	box-sizing: border-box;
 }
 
+button {
+	background: none;
+}
+
 body {
     min-height: 100vh;
 }
