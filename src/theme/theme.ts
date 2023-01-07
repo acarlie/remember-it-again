@@ -1,6 +1,6 @@
 const neutralValues = [0, 50, 100, 200, 300, 400, 500, 600]
 type Neutral = `neutral${typeof neutralValues[number]}`
-export type Color = 'primary' | 'fuschia' | 'green' | 'lime' | Neutral;
+export type Color = 'primary' | 'fuschia' | 'green' | 'lime' | Neutral
 type ColorValue = `hsla(${string})`
 type RemValue = `${number}rem`
 type Radius = 'small' | 'medium' | 'large'

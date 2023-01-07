@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { css } from '@emotion/react';
+import { css } from '@emotion/react'
 import { GameProvider, Game } from './game'
 import { theme } from './theme/theme'
 

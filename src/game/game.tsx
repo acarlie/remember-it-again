@@ -3,7 +3,7 @@
 import { css } from '@emotion/react'
 import { GameContext } from './game-provider'
 import { Tile, Modal, Button } from '../components'
-import { useModal } from '../hooks';
+import { useModal } from '../hooks'
 import * as React from 'react'
 
 const main = css`

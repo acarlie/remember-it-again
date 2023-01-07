@@ -1,8 +1,7 @@
 import * as React from 'react'
-import { options, OptionData, topScoreKey } from './game-constants'
+import { options, OptionData, topScoreKey, Status } from './game.definitions'
 import { shuffle } from '../utilities/shuffle'
 
-type Status = 'start' | 'win' | 'lose' | 'playing'
 
 type GameContextProps = {
     options: OptionData[]
@@ -38,8 +37,8 @@ export const GameProvider = ({ children }: GameProviderProps) => {
 
 
     const checkAnswer = (answer: string) => {
-        const win = picked.length === options.length - 1;
-        const lose = picked.includes(answer);
+        const win = picked.length === options.length - 1
+        const lose = picked.includes(answer)
 
         if (lose) {
             setGameStatus('lose')
@@ -57,21 +56,25 @@ export const GameProvider = ({ children }: GameProviderProps) => {
         const currentScore = picked.length
 
         const savedScore = localStorage.getItem(topScoreKey)
+        const currentScoreIsLower = savedScore && currentScore <= parseInt(savedScore)
+        const currentScoreIsHigher = (savedScore && currentScore > parseInt(savedScore)) || !savedScore
 
-        if (savedScore && currentScore <= parseInt(savedScore)) {
+        if (currentScoreIsLower) {
             return
         }
 
-        if ((savedScore && currentScore > parseInt(savedScore)) || !savedScore) {
-            localStorage.setItem(topScoreKey, `${currentScore}`);
+        if (currentScoreIsHigher) {
+            localStorage.setItem(topScoreKey, `${currentScore}`)
         }
     }
 
     const start = () => {
-        const savedScore = localStorage.getItem(topScoreKey);
+        const savedScore = localStorage.getItem(topScoreKey)
+
         if (savedScore) {
             setTopScore(parseInt(savedScore))
         }
+
         setGameStatus('playing')
     }
 

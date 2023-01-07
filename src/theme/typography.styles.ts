@@ -1,12 +1,12 @@
 import { css } from "@emotion/react";
 import { theme } from './theme'
 
-const headingColor = theme.color.neutral600;
-const headingLineHeight = 1.25;
-const textLineHeight = .5;
-const headingFontWeightBold = 600;
-const headingFontWeightLight = 300;
-const textFontWeight = 400;
+const headingColor = theme.color.neutral600
+const headingLineHeight = 1.25
+const textLineHeight = .5
+const headingFontWeightBold = 600
+const headingFontWeightLight = 300
+const textFontWeight = 400
 
 export const heading1 = css`
     color: ${headingColor};

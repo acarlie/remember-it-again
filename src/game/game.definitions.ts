@@ -1,7 +1,8 @@
 import { Color } from '../theme/theme'
 
-export const topScoreKey = 'remember_it_again_top_score';
+export const topScoreKey = 'remember_it_again_top_score'
 
+export type Status = 'start' | 'win' | 'lose' | 'playing'
 
 export type OptionData = {
     label: string

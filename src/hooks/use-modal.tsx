@@ -6,10 +6,10 @@ type ModalHookReturn = [
 ]
 
 export function useModal(isDefaultOpen: boolean): ModalHookReturn {
-    const [isOpen, setisOpen] = React.useState(isDefaultOpen);
+    const [isOpen, setisOpen] = React.useState(isDefaultOpen)
 
     const toggle = () => {
-        setisOpen(!isOpen);
+        setisOpen(!isOpen)
     };
 
     return [

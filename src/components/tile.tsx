@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { css } from '@emotion/react'
 import { Color, theme } from '../theme/theme'
-import { OptionData } from '../game/game-constants'
+import { OptionData } from '../game/game.definitions'
 
 const tileStyle = (color: Color) => css`
     background: ${theme.color.neutral200};
