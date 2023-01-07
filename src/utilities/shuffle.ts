@@ -1,4 +1,4 @@
-import { OptionData } from "../constants";
+import { OptionData } from "../game/game-constants";
 
 export const shuffle = (options: OptionData[]) => {
     const [...shuffleArr] = options;

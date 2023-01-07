@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
-import { GameProvider } from './components/game-provider';
-import { Game } from './components/game'
-
 import { css } from '@emotion/react';
+import { GameProvider, Game } from './game'
 import { theme } from './theme/theme'
 
 const app = css`

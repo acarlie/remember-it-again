@@ -1,11 +1,8 @@
 /** @jsxImportSource @emotion/react */
+import * as React from 'react'
 import { css } from '@emotion/react'
 import { Color, theme } from '../theme/theme'
-import { GameContext } from './game-provider'
-import * as React from 'react'
-import { OptionData } from '../constants'
-
-
+import { OptionData } from '../game/game-constants'
 
 const tileStyle = (color: Color) => css`
     background: ${theme.color.neutral200};
@@ -21,10 +18,11 @@ const tileStyle = (color: Color) => css`
     }
 `
 
-export const Tile = ({ label, color }: OptionData) => {
-    const { checkAnswer } = React.useContext(GameContext)
+type TileProps = OptionData & React.ButtonHTMLAttributes<HTMLButtonElement>
+
+export const Tile = ({ label, color, ...props }: TileProps) => {
     return (
-        <button css={tileStyle(color)} aria-label={label} onClick={() => checkAnswer(label)}>
+        <button css={tileStyle(color)} {...props}>
             {label}
         </button>
     )

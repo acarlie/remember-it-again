@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { options, OptionData } from '../constants'
+import { options, OptionData } from './game-constants'
 import { shuffle } from '../utilities/shuffle'
 
 type Status = 'win' | 'lose' | 'playing'

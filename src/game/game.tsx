@@ -2,10 +2,8 @@
 
 import { css } from '@emotion/react'
 import { GameContext } from './game-provider'
-import { Tile } from './tile';
-import { Modal } from './modal';
-import { Button } from './button';
-import { useModal } from '../hooks/use-modal';
+import { Tile, Modal, Button } from '../components'
+import { useModal } from '../hooks';
 import * as React from 'react'
 import { heading2 } from '../theme';
 
@@ -27,7 +25,7 @@ const grid = css`
 `
 
 export const Game = () => {
-    const { picked, options, status, restart } = React.useContext(GameContext)
+    const { picked, options, status, restart, checkAnswer } = React.useContext(GameContext)
     const [isWinModalOpen, toggleWinModal] = useModal()
     const [isLoseModalOpen, toggleLoseModal] = useModal()
 
@@ -53,7 +51,7 @@ export const Game = () => {
                     Score: {picked.length}
                 </div>
                 <section css={grid}>
-                    {options.map(tile => <Tile key={tile.label} {...tile} />)}
+                    {options.map(tile => <Tile key={tile.label} {...tile} onClick={() => checkAnswer(tile.label)} />)}
                 </section>
             </div>
             <Modal isOpen={isWinModalOpen} toggle={toggleWinModal} title='Win!'>
