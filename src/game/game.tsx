@@ -5,7 +5,6 @@ import { GameContext } from './game-provider'
 import { Tile, Modal, Button } from '../components'
 import { useModal } from '../hooks';
 import * as React from 'react'
-import { heading2 } from '../theme';
 
 const main = css`
   align-items: center;
