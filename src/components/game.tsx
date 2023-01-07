@@ -4,6 +4,7 @@ import { css } from '@emotion/react'
 import { GameContext } from './game-provider'
 import { Tile } from './tile';
 import { Modal } from './modal';
+import { Button } from './button';
 import { useModal } from '../hooks/use-modal';
 import * as React from 'react'
 import { heading2 } from '../theme';
@@ -57,11 +58,11 @@ export const Game = () => {
             </div>
             <Modal isOpen={isWinModalOpen} toggle={toggleWinModal} title='Win!'>
                 <h2 css={heading2}>You Won!</h2>
-                <button onClick={restart}>New Game</button>
+                <Button variant='primary' onClick={restart}>New Game</Button>
             </Modal>
             <Modal isOpen={isLoseModalOpen} toggle={toggleLoseModal} title='Lose!'>
                 <h2 css={heading2}>Game Over</h2>
-                <button onClick={restart}>New Game</button>
+                <Button variant='primary' onClick={restart}>New Game</Button>
             </Modal>
         </main>
 
