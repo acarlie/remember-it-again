@@ -24,7 +24,7 @@ const grid = css`
 `
 
 export const Game = () => {
-    const { picked, options, status, restart, checkAnswer, start } = React.useContext(GameContext)
+    const { picked, options, status, topScore, restart, checkAnswer, start } = React.useContext(GameContext)
     const [isStartModalOpen, toggleStartModal] = useModal(true)
     const [isWinModalOpen, toggleWinModal] = useModal(false)
     const [isLoseModalOpen, toggleLoseModal] = useModal(false)
@@ -54,6 +54,9 @@ export const Game = () => {
                 <div>
                     Score: {picked.length}
                 </div>
+                <div>
+                    Top Score: {topScore}
+                </div>
                 <section css={grid}>
                     {options.map(tile => <Tile key={tile.label} {...tile} onClick={() => checkAnswer(tile.label)} />)}
                 </section>
@@ -64,7 +67,9 @@ export const Game = () => {
             <Modal isOpen={isWinModalOpen} toggle={toggleWinModal} title="You Won!">
                 <Button variant='primary' onClick={restart}>New Game</Button>
             </Modal>
-            <Modal isOpen={isLoseModalOpen} toggle={toggleLoseModal} title="Game Over">
+            <Modal isOpen={isLoseModalOpen} toggle={toggleLoseModal} title={picked.length >= topScore ? "New High Score!" : "Game Over"}>
+                <p>Score: {picked.length}</p>
+                <p>Top Score: {topScore}</p>
                 <Button variant='primary' onClick={restart}>New Game</Button>
             </Modal>
         </main>

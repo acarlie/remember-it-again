@@ -65,6 +65,7 @@ export const GameProvider = ({ children }: GameProviderProps) => {
 
         if (currentScoreIsHigher) {
             localStorage.setItem(topScoreKey, `${currentScore}`)
+            setTopScore(currentScore)
         }
     }
 
