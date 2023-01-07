@@ -3,7 +3,10 @@
 import { css } from '@emotion/react'
 import { GameContext } from './game-provider'
 import { Tile } from './tile';
+import { Modal } from './modal';
+import { useModal } from '../hooks/use-modal';
 import * as React from 'react'
+import { heading2 } from '../theme';
 
 const main = css`
   align-items: center;
@@ -23,7 +26,25 @@ const grid = css`
 `
 
 export const Game = () => {
-    const { picked, options } = React.useContext(GameContext)
+    const { picked, options, status, restart } = React.useContext(GameContext)
+    const [isWinModalOpen, toggleWinModal] = useModal()
+    const [isLoseModalOpen, toggleLoseModal] = useModal()
+
+    React.useEffect(() => {
+        if (status === 'win' && !isWinModalOpen) {
+            toggleWinModal()
+        } else if (status === 'lose' && !isLoseModalOpen) {
+            toggleLoseModal()
+        } else if (status === 'playing') {
+            if (isWinModalOpen) {
+                toggleWinModal()
+            }
+            if (isLoseModalOpen) {
+                toggleLoseModal()
+            }
+        }
+    }, [status, toggleWinModal, toggleLoseModal, isLoseModalOpen, isWinModalOpen])
+
     return (
         <main css={main}>
             <div>
@@ -34,6 +55,14 @@ export const Game = () => {
                     {options.map(tile => <Tile key={tile.label} {...tile} />)}
                 </section>
             </div>
+            <Modal isOpen={isWinModalOpen} toggle={toggleWinModal} title='Win!'>
+                <h2 css={heading2}>You Won!</h2>
+                <button onClick={restart}>New Game</button>
+            </Modal>
+            <Modal isOpen={isLoseModalOpen} toggle={toggleLoseModal} title='Lose!'>
+                <h2 css={heading2}>Game Over</h2>
+                <button onClick={restart}>New Game</button>
+            </Modal>
         </main>
 
     )

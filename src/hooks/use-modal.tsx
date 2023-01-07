@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-export type ModalHookProps = {
-    isOpen: boolean,
-    toggle: () => void
-}
+export type ModalHookProps = [
+    boolean,
+    () => void
+]
 
 export function useModal(): ModalHookProps {
     const [isOpen, setisOpen] = React.useState(false);
@@ -12,8 +12,8 @@ export function useModal(): ModalHookProps {
         setisOpen(!isOpen);
     };
 
-    return {
+    return [
         isOpen,
         toggle
-    };
+    ];
 }

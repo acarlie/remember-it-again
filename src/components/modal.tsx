@@ -1,17 +1,19 @@
 /** @jsxImportSource @emotion/react */
 
-import { ModalHookProps } from '../hooks/use-modal'
 import { css } from '@emotion/react'
-import { updateOpacity, theme } from '../theme/theme'
-import { heading2 } from '../theme/typography.styles'
+import { updateOpacity, theme, heading2 } from '../theme'
 
-interface ModalProps extends ModalHookProps {
+interface ModalProps {
+    isOpen: boolean
+    toggle: () => void
     children: React.ReactNode
     title: string
 }
 
 const open = css`
-    display: block;
+    display: flex;
+    align-items: center;
+    align-content: center;
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -32,9 +34,10 @@ const closed = css`
 export const Modal = ({ isOpen, toggle, title, children }: ModalProps) => {
     return (
         <div role='dialog' aria-modal='true' css={isOpen ? open : closed}>
-            <button aria-label="Close Dialog" onClick={toggle}>X</button>
-            <h2 css={heading2}>{title}</h2>
-            {children}
+            <div>
+                <h2 css={heading2}>{title}</h2>
+                {children}
+            </div>
         </div>
     )
 }
