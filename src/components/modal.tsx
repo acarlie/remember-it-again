@@ -13,7 +13,7 @@ interface ModalProps {
 const open = css`
     display: flex;
     align-items: center;
-    align-content: center;
+    justify-content: center;
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -31,10 +31,17 @@ const closed = css`
     display: none;
 `
 
+const modalBody = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+`
+
 export const Modal = ({ isOpen, toggle, title, children }: ModalProps) => {
     return (
         <div role='dialog' aria-modal='true' css={isOpen ? open : closed}>
-            <div>
+            <div css={modalBody}>
                 <h2 css={heading2}>{title}</h2>
                 {children}
             </div>

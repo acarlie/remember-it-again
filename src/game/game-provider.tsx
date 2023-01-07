@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { options, OptionData } from './game-constants'
+import { options, OptionData, topScoreKey } from './game-constants'
 import { shuffle } from '../utilities/shuffle'
 
-type Status = 'win' | 'lose' | 'playing'
+type Status = 'start' | 'win' | 'lose' | 'playing'
 
 type GameContextProps = {
     options: OptionData[]
@@ -11,7 +11,7 @@ type GameContextProps = {
     status: Status
     checkAnswer: (answer: string) => void
     restart: () => void
-    updateTopScore: (score: number) => void
+    start: () => void
 }
 
 export const GameContext = React.createContext<GameContextProps>(
@@ -22,7 +22,7 @@ export const GameContext = React.createContext<GameContextProps>(
         status: 'playing',
         checkAnswer: () => null,
         restart: () => null,
-        updateTopScore: () => null
+        start: () => null,
     }
 )
 
@@ -33,8 +33,9 @@ type GameProviderProps = {
 export const GameProvider = ({ children }: GameProviderProps) => {
     const [topScore, setTopScore] = React.useState<number>(0)
     const [picked, setPickedTiles] = React.useState<string[]>([])
-    const [gameTiles, setGameTiles] = React.useState<OptionData[]>(options)
-    const [gameStatus, setGameStatus] = React.useState<Status>('playing')
+    const [gameTiles, setGameTiles] = React.useState<OptionData[]>(shuffle(options))
+    const [gameStatus, setGameStatus] = React.useState<Status>('start')
+
 
     const checkAnswer = (answer: string) => {
         const win = picked.length === options.length - 1;
@@ -42,19 +43,36 @@ export const GameProvider = ({ children }: GameProviderProps) => {
 
         if (lose) {
             setGameStatus('lose')
-            // check if top score, update if needed
+            saveTopScore()
         } else if (win) {
             setGameStatus('win')
-            // check if top score, update if needed
-
+            saveTopScore()
         } else {
             setPickedTiles(picked.concat(answer))
             setGameTiles(shuffle(gameTiles))
         }
     }
 
-    const updateTopScore = (score: number) => {
-        console.log('update top')
+    const saveTopScore = () => {
+        const currentScore = picked.length
+
+        const savedScore = localStorage.getItem(topScoreKey)
+
+        if (savedScore && currentScore <= parseInt(savedScore)) {
+            return
+        }
+
+        if ((savedScore && currentScore > parseInt(savedScore)) || !savedScore) {
+            localStorage.setItem(topScoreKey, `${currentScore}`);
+        }
+    }
+
+    const start = () => {
+        const savedScore = localStorage.getItem(topScoreKey);
+        if (savedScore) {
+            setTopScore(parseInt(savedScore))
+        }
+        setGameStatus('playing')
     }
 
     const restart = () => {
@@ -71,9 +89,9 @@ export const GameProvider = ({ children }: GameProviderProps) => {
             picked: picked,
             status: gameStatus,
             checkAnswer,
-            updateTopScore,
-            restart
-        }} >
+            restart,
+            start
+        }}>
             {children}
         </GameContext.Provider >
     )

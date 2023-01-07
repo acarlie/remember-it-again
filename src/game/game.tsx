@@ -25,9 +25,10 @@ const grid = css`
 `
 
 export const Game = () => {
-    const { picked, options, status, restart, checkAnswer } = React.useContext(GameContext)
-    const [isWinModalOpen, toggleWinModal] = useModal()
-    const [isLoseModalOpen, toggleLoseModal] = useModal()
+    const { picked, options, status, restart, checkAnswer, start } = React.useContext(GameContext)
+    const [isStartModalOpen, toggleStartModal] = useModal(true)
+    const [isWinModalOpen, toggleWinModal] = useModal(false)
+    const [isLoseModalOpen, toggleLoseModal] = useModal(false)
 
     React.useEffect(() => {
         if (status === 'win' && !isWinModalOpen) {
@@ -41,8 +42,12 @@ export const Game = () => {
             if (isLoseModalOpen) {
                 toggleLoseModal()
             }
+            if (isStartModalOpen) {
+                toggleStartModal()
+            }
         }
-    }, [status, toggleWinModal, toggleLoseModal, isLoseModalOpen, isWinModalOpen])
+    }, [status, toggleWinModal, toggleLoseModal, toggleStartModal, isLoseModalOpen, isWinModalOpen, isStartModalOpen])
+
 
     return (
         <main css={main}>
@@ -54,12 +59,13 @@ export const Game = () => {
                     {options.map(tile => <Tile key={tile.label} {...tile} onClick={() => checkAnswer(tile.label)} />)}
                 </section>
             </div>
-            <Modal isOpen={isWinModalOpen} toggle={toggleWinModal} title='Win!'>
-                <h2 css={heading2}>You Won!</h2>
+            <Modal isOpen={isStartModalOpen} toggle={toggleStartModal} title='Remember It'>
+                <Button variant='primary' onClick={start}>Start Game</Button>
+            </Modal>
+            <Modal isOpen={isWinModalOpen} toggle={toggleWinModal} title="You Won!">
                 <Button variant='primary' onClick={restart}>New Game</Button>
             </Modal>
-            <Modal isOpen={isLoseModalOpen} toggle={toggleLoseModal} title='Lose!'>
-                <h2 css={heading2}>Game Over</h2>
+            <Modal isOpen={isLoseModalOpen} toggle={toggleLoseModal} title="Game Over">
                 <Button variant='primary' onClick={restart}>New Game</Button>
             </Modal>
         </main>
