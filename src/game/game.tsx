@@ -5,6 +5,7 @@ import { GameContext } from './game-provider'
 import { Tile, Modal, Button } from '../components'
 import { useModal } from '../hooks'
 import * as React from 'react'
+import { StarField } from '../components/star-field'
 
 const main = css`
   align-items: center;
@@ -12,6 +13,7 @@ const main = css`
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;
+  position: relative;
 `
 
 const grid = css`
@@ -50,6 +52,7 @@ export const Game = () => {
 
     return (
         <main css={main}>
+            <StarField count={200} />
             <div>
                 <div>
                     Score: {picked.length}
