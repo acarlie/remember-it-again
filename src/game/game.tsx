@@ -6,6 +6,7 @@ import { Tile, Modal, Button } from '../components'
 import { useModal } from '../hooks'
 import * as React from 'react'
 import { StarField } from '../components/star-field'
+import { PlanetOne } from '../components/planets/planet-one'
 
 const main = css`
   align-items: center;
@@ -64,6 +65,7 @@ export const Game = () => {
                     {options.map(tile => <Tile key={tile.label} {...tile} onClick={() => checkAnswer(tile.label)} />)}
                 </section>
             </div>
+            <PlanetOne />
             <Modal isOpen={isStartModalOpen} toggle={toggleStartModal} title='Remember It'>
                 <Button variant='primary' onClick={start}>Start Game</Button>
             </Modal>
