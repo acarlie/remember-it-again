@@ -61,9 +61,6 @@ const color1 = '#4d5e66';
 const color2 = '#82bfa8';
 const color3 = '#f6f6f6';
 
-
-
-
 export const PlanetOne = () => {
     return (
         <div css={wrapper}>

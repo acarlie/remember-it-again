@@ -11,9 +11,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 type ButtonVariant = 'primary' | 'secondary'
 
 const base = css`
-    padding: .5rem .75rem;
+    padding: .5rem 1.25rem;
     cursor: pointer;
-    border-radius: ${theme.radius.small};
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    overflow: hidden;
 `
 
 const primary = css`

@@ -13,6 +13,7 @@ const field = css`
     top: 0;
     left: 0;
     overflow: hidden;
+    opacity: .4;
 `
 
 const twinkle = keyframes`
@@ -20,13 +21,13 @@ const twinkle = keyframes`
         opacity: 1;
     }
     33% {
-        opacity: .3;
+        opacity: 0;
     }
     50% {
         opacity: .7;
     }
     80% {
-        opacity: .3;
+        opacity: .2;
     }
     100% {
         opacity: 1;
@@ -50,7 +51,6 @@ const star = (x: number, y: number, size: number, glow: number, opacity: number,
     opacity: ${twinkleChance > 7 ? 1 : opacity / 10};
     animation: ${twinkleChance > 7 ? twinkle : 'none'} 5s infinite linear;
     animation-delay: ${3 / glow}s;
-
 `
 
 export const StarField = ({ count }: StarFieldProps) => {
