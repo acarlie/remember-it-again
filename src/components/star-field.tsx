@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css, keyframes } from "@emotion/react"
+import { getRandomInt } from '../utilities'
 
 type StarFieldProps = {
     count: number
@@ -33,11 +34,6 @@ const twinkle = keyframes`
         opacity: 1;
     }
 `
-
-
-function getRandomInt(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
 
 const star = (x: number, y: number, size: number, glow: number, opacity: number, twinkleChance: number) => css`
     position: absolute;

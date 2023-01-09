@@ -1,32 +1,35 @@
 /** @jsxImportSource @emotion/react */
+
 import * as React from 'react'
 import { css } from '@emotion/react'
-import { Color, theme } from '../theme/theme'
 import { OptionData } from '../game/game.definitions'
 import { ClippedCard } from './clipped-card'
-import { PlanetOne } from './planets/planet-one'
+import { Planet } from './planets/planet'
+import { PlanetColor, Pattern } from './planets/planets.definitions'
 
-const tileStyle = (color: Color) => css`
-    background: ${theme.color.neutral200};
-    border-radius: ${theme.radius.medium};
-    border: 2px solid ${theme.color[color]};
-    opacity: .8;
-    padding: 2rem 1rem;
+const tileStyle = css`
+    opacity: .75;
     transition: opacity 300ms;
 
     :hover {
         cursor: pointer;
-        opacity: 1;
+        opacity: .9;
     }
 `
 
-type TileProps = OptionData & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-export const Tile = ({ label, color, ...props }: TileProps) => {
+type TileAttributes = OptionData & React.ButtonHTMLAttributes<HTMLButtonElement>
+
+interface TileProps extends TileAttributes {
+    planetColor: PlanetColor
+    pattern: Pattern
+}
+
+export const Tile = ({ label, planetColor, pattern, color, ...props }: TileProps) => {
     return (
-        <button {...props}>
-            <ClippedCard tl blur>
-                <PlanetOne />
+        <button css={tileStyle} {...props}>
+            <ClippedCard tl tr blur>
+                <Planet {...planetColor} pattern={pattern} />
                 {label}
             </ClippedCard>
         </button>
