@@ -3,6 +3,8 @@ import * as React from 'react'
 import { css } from '@emotion/react'
 import { Color, theme } from '../theme/theme'
 import { OptionData } from '../game/game.definitions'
+import { ClippedCard } from './clipped-card'
+import { PlanetOne } from './planets/planet-one'
 
 const tileStyle = (color: Color) => css`
     background: ${theme.color.neutral200};
@@ -22,8 +24,11 @@ type TileProps = OptionData & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const Tile = ({ label, color, ...props }: TileProps) => {
     return (
-        <button css={tileStyle(color)} {...props}>
-            {label}
+        <button {...props}>
+            <ClippedCard tl blur>
+                <PlanetOne />
+                {label}
+            </ClippedCard>
         </button>
     )
 }

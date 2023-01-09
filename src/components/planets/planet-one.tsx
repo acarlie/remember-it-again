@@ -29,7 +29,7 @@ const atmosphere1 = css`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(125deg, hsl(173deg, 25%, 96%), hsl(187deg, 80%, 20%));
+    background: linear-gradient(125deg, hsl(173deg, 25%, 80%), hsl(173deg, 100%, 10%));
     mix-blend-mode: hard-light;
     opacity: .9;
 `
