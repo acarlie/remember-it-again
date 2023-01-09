@@ -7,6 +7,7 @@ import { useModal } from '../hooks'
 import * as React from 'react'
 import { StarField } from '../components/star-field'
 import { PlanetOne } from '../components/planets/planet-one'
+import { ClippedCard } from '../components/clipped-card'
 
 const main = css`
   align-items: center;
@@ -68,6 +69,11 @@ export const Game = () => {
             <PlanetOne />
             <Modal isOpen={isStartModalOpen} toggle={toggleStartModal} title='Remember It'>
                 <Button variant='primary' onClick={start}>Start Game</Button>
+                <ClippedCard tl />
+                <ClippedCard tr />
+                <ClippedCard bl />
+                <ClippedCard br />
+                <ClippedCard tl tr bl br />
             </Modal>
             <Modal isOpen={isWinModalOpen} toggle={toggleWinModal} title="You Won!">
                 <Button variant='primary' onClick={restart}>New Game</Button>

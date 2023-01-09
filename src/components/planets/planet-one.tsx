@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react"
+import { theme } from "../../theme"
 
 const wrapper = css`
     width: 10rem;
@@ -28,10 +29,19 @@ const atmosphere1 = css`
     left: 0;
     width: 100%;
     height: 100%;
-    box-shadow: inset 0px 0px 25px 15px rgba(255, 255, 255, 1);
     background: linear-gradient(125deg, hsl(173deg, 25%, 96%), hsl(187deg, 80%, 20%));
     mix-blend-mode: hard-light;
     opacity: .9;
+`
+
+const air = css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 15px 15px rgba(255, 255, 255, 1);
+    mix-blend-mode: screen;
 `
 
 const atmosphere2 = css`
@@ -40,7 +50,7 @@ const atmosphere2 = css`
     left: 4%;
     width: 92%;
     height: 92%;
-    background: linear-gradient(125deg, hsl(173deg, 50%, 96%), hsl(187deg, 90%, 15%));
+    background: linear-gradient(125deg, hsl(173deg, 100%, 80%), hsl(173deg, 80%, 20%));
     mix-blend-mode: hard-light;
     border-radius: 100%;
     opacity: .5;
@@ -51,10 +61,10 @@ const atmosphere3 = css`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(125deg, hsl(173deg, 50%, 96%), hsl(187deg, 90%, 25%));
+    background: linear-gradient(125deg, hsl(173deg, 100%, 80%), hsl(173deg, 80%, 20%));
     mix-blend-mode: hard-light;
     border-radius: 100%;
-    opacity: .5;
+    opacity: .2;
 `
 
 const color1 = '#4d5e66';
@@ -70,6 +80,7 @@ export const PlanetOne = () => {
                 {/* <PatternThree light={color1} medium={color2} dark={color3} /> */}
                 {/* <PatternFour light={color1} medium={color2} dark={color3} /> */}
                 <div css={atmosphere1} />
+                <div css={air} />
             </div>
             <div css={atmosphere2} />
             <div css={atmosphere3} />

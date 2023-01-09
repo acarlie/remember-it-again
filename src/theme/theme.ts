@@ -16,7 +16,7 @@ export const theme: Theme = {
         green: 'hsla(173, 100%, 36%, 1)',
         lime: 'hsla(73, 87%, 62%, 1)',
         primary: 'hsla(224, 71%, 53%, 1)',
-        neutral0: 'hsla(224, 50%, 12%, 1)',
+        neutral0: 'hsla(242, 100%, 7%, 1)',
         neutral50: 'hsla(242, 39%, 17%, 1)',
         neutral100: 'hsla(240, 34%, 26%, 1)',
         neutral200: 'hsla(240, 32%, 35%, 1)',
