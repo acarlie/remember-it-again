@@ -5,7 +5,7 @@ import { css } from '@emotion/react'
 import { OptionData } from '../game/game.definitions'
 import { ClippedCard } from './clipped-card'
 import { Planet } from './planets/planet'
-import { PlanetColor, Pattern } from './planets/planets.definitions'
+import { PlanetColor, PlanetAttributes } from './planets/planets.definitions'
 
 const tileStyle = css`
     opacity: .75;
@@ -17,19 +17,17 @@ const tileStyle = css`
     }
 `
 
+export type TileAttributes = PlanetAttributes & OptionData & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-type TileAttributes = OptionData & React.ButtonHTMLAttributes<HTMLButtonElement>
-
-interface TileProps extends TileAttributes {
+export interface TileProps extends TileAttributes {
     planetColor: PlanetColor
-    pattern: Pattern
 }
 
-export const Tile = ({ label, planetColor, pattern, color, ...props }: TileProps) => {
+export const Tile = ({ label, planetColor, pattern, variance, color, ...props }: TileProps) => {
     return (
         <button css={tileStyle} {...props}>
             <ClippedCard tl tr blur>
-                <Planet {...planetColor} pattern={pattern} />
+                <Planet {...planetColor} variance={variance} pattern={pattern} />
                 {label}
             </ClippedCard>
         </button>

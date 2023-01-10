@@ -6,7 +6,6 @@ import { Tile, Modal, Button } from '../components'
 import { useModal } from '../hooks'
 import * as React from 'react'
 import { StarField } from '../components/star-field'
-import { planetColors } from '../components/planets'
 
 const main = css`
   align-items: center;
@@ -63,7 +62,7 @@ export const Game = () => {
                 </div>
                 <section css={grid}>
                     {options.map(tile => {
-                        return (<Tile key={tile.label} planetColor={planetColors[0]} pattern='patternOne' {...tile} onClick={() => checkAnswer(tile.label)} />)
+                        return (<Tile key={tile.label} {...tile} onClick={() => checkAnswer(tile.label)} />)
                     })}
                 </section>
             </div>

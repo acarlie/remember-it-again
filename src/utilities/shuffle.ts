@@ -1,6 +1,4 @@
-import { OptionData } from "../game/game.definitions"
-
-export const shuffle = (options: OptionData[]) => {
+export const shuffle = (options: any[]) => {
     const [...shuffleArr] = options
     for (let i = shuffleArr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * i)

@@ -2,9 +2,10 @@ import * as React from 'react'
 import { options, OptionData, topScoreKey, Status } from './game.definitions'
 import { shuffle, getRandomInt } from '../utilities'
 import { planetColors, patterns } from '../components/planets'
+import { TileProps } from '../components'
 
 type GameContextProps = {
-    options: OptionData[]
+    options: TileProps[]
     topScore: number,
     picked: string[],
     status: Status
@@ -33,14 +34,15 @@ const createTiles = (options: OptionData[]) => {
     return options.map(option => {
         const pattern = patterns[getRandomInt(0, patterns.length)]
         const planetColor = planetColors[getRandomInt(0, planetColors.length)]
-        return { ...option, planetColor, pattern }
+        const variance = getRandomInt(0, 1);
+        return { ...option, planetColor, pattern, variance } as TileProps
     })
 }
 
 export const GameProvider = ({ children }: GameProviderProps) => {
     const [topScore, setTopScore] = React.useState<number>(0)
     const [picked, setPickedTiles] = React.useState<string[]>([])
-    const [gameTiles, setGameTiles] = React.useState<OptionData[]>(shuffle(createTiles(options)))
+    const [gameTiles, setGameTiles] = React.useState<TileProps[]>(shuffle(createTiles(options)))
     const [gameStatus, setGameStatus] = React.useState<Status>('start')
 
     const checkAnswer = (answer: string) => {
