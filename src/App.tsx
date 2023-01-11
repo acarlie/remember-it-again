@@ -7,7 +7,6 @@ import { theme } from './theme/theme'
 const app = css`
   background: ${theme.color.neutral0};
   color: ${theme.color.neutral500};
-  font-family: 'Space Grotesk', sans-serif;
 `
 
 function App() {

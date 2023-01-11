@@ -5,9 +5,12 @@ type ColorValue = `hsla(${string})`
 type RemValue = `${number}rem`
 type Radius = 'small' | 'medium' | 'large'
 
+type Font = 'heading' | 'text'
+
 type Theme = {
     color: Record<Color, ColorValue>
     radius: Record<Radius, RemValue>
+    font: Record<Font, string>
 }
 
 export const theme: Theme = {
@@ -29,6 +32,10 @@ export const theme: Theme = {
         small: '.25rem',
         medium: '1rem',
         large: '2rem'
+    },
+    font: {
+        heading: 'Rajdhani',
+        text: 'Rajdhani'
     }
 }
 

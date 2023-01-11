@@ -6,6 +6,7 @@ import { Tile, Modal, Button } from '../components'
 import { useModal } from '../hooks'
 import * as React from 'react'
 import { StarField } from '../components/star-field'
+import { textMD } from '../theme'
 
 const main = css`
   align-items: center;
@@ -66,7 +67,8 @@ export const Game = () => {
                     })}
                 </section>
             </div>
-            <Modal isOpen={isStartModalOpen} toggle={toggleStartModal} title='Remember It'>
+            <Modal isOpen={isStartModalOpen} toggle={toggleStartModal} title='To Boldy Go'>
+                <p css={textMD}>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
                 <Button variant='primary' onClick={start}>Start Game</Button>
             </Modal>
             <Modal isOpen={isWinModalOpen} toggle={toggleWinModal} title="You Won!">
@@ -77,7 +79,7 @@ export const Game = () => {
                 <p>Top Score: {topScore}</p>
                 <Button variant='primary' onClick={restart}>New Game</Button>
             </Modal>
-        </main>
+        </main >
 
     )
 }

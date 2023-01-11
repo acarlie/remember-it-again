@@ -3,6 +3,7 @@
 import { css } from "@emotion/react"
 import { PatternOne, PatternTwo, PatternThree, PatternFour } from "./patterns"
 import { Pattern, PlanetProps, Hue } from "./planets.definitions"
+import { processRandom } from "../../utilities"
 
 const absolutePosition = (size: number) => css`
     position: absolute;
@@ -12,9 +13,9 @@ const absolutePosition = (size: number) => css`
     height: ${size}%;
 `
 
-const wrapper = css`
-    width: 10rem;
-    height: 10rem;
+const wrapper = (size: number) => css`
+    width: ${size}rem;
+    height: ${size}rem;
     position: relative;
 `
 
@@ -25,18 +26,23 @@ const planet = css`
     justify-content: center;
     align-items: center;
     position: relative;
+    svg {
+        width: 100%;
+    }
 `
 
 const air = css`
     box-shadow: inset 0 0 15px 15px rgba(255, 255, 255, .9);
     mix-blend-mode: screen;
     border-radius: 100%;
+    overflow: hidden;
 `
 
 const atmosphereBase = (opacity: number) => css`
     mix-blend-mode: hard-light;
     border-radius: 100%;
     opacity: ${opacity};
+    overflow: hidden;
 `
 
 const atmosphere1 = (hue: Hue) => css`
@@ -61,14 +67,15 @@ const PatternComponents: Record<Pattern, any> = {
 
 export const Planet = ({ pattern, hue, light, medium, dark, variance }: PlanetProps) => {
     const PatternComponent = PatternComponents[pattern]
+
     return (
-        <div css={wrapper}>
-            <div css={[absolutePosition(70), planet]}>
+        <div css={wrapper(processRandom(variance, 6, 9))}>
+            <div css={[absolutePosition(processRandom(variance, 60, 90)), planet]}>
                 <PatternComponent light={light} medium={medium} dark={dark} />
                 <div css={[absolutePosition(100), atmosphereBase(.9), atmosphere1(hue)]} />
                 <div css={[absolutePosition(100), air]} />
             </div>
-            <div css={[absolutePosition(92), atmosphereBase(.4), atmosphere2(hue)]} />
+            <div css={[absolutePosition(processRandom(variance, 85, 94)), atmosphereBase(.4), atmosphere2(hue)]} />
             <div css={[absolutePosition(100), atmosphereBase(.2), atmosphere3(hue)]} />
         </div>
     )

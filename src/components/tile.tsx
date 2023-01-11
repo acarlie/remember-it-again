@@ -10,7 +10,6 @@ import { PlanetColor, PlanetAttributes } from './planets/planets.definitions'
 const tileStyle = css`
     opacity: .75;
     transition: opacity 300ms;
-
     :hover {
         cursor: pointer;
         opacity: .9;
@@ -26,8 +25,11 @@ export interface TileProps extends TileAttributes {
 export const Tile = ({ label, planetColor, pattern, variance, color, ...props }: TileProps) => {
     return (
         <button css={tileStyle} {...props}>
-            <ClippedCard tl tr blur>
-                <Planet {...planetColor} variance={variance} pattern={pattern} />
+            <ClippedCard cornerSize='16px' tl tr blur>
+                <div style={{ width: '9rem', height: '9rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+                    <Planet {...planetColor} variance={variance} pattern={pattern} />
+                </div>
                 {label}
             </ClippedCard>
         </button>

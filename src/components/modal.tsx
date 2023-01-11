@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react'
-import { updateOpacity, theme, heading2 } from '../theme'
+import { updateOpacity, theme, heading1 } from '../theme'
 
 interface ModalProps {
     children: React.ReactNode
@@ -44,7 +44,7 @@ export const Modal = ({ isOpen, toggle, title, children }: ModalProps) => {
     return (
         <div role='dialog' aria-modal='true' css={[modalWrapper, isOpen ? open : closed]}>
             <div css={modalBody}>
-                <h2 css={heading2}>{title}</h2>
+                <h2 css={heading1}>{title}</h2>
                 {children}
             </div>
         </div>
