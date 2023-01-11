@@ -8,7 +8,7 @@ type Corners = {
     tr?: boolean
     bl?: boolean
     br?: boolean
-    cornerSize: `${number}px`
+    cornerSize?: `${number}px`
 }
 
 interface ClippedCardProps extends Corners {
@@ -26,7 +26,7 @@ const blurEffect = css`
 //     filter: drop-shadow(0px -2px 0 rgba(255, 0, 0, 0.5)) drop-shadow(0px 2px 0 rgba(255, 0, 0, 0.5)) drop-shadow(2px 0px 0 rgba(255, 0, 0, 1))  drop-shadow(-2px 0px 0 rgba(255, 0, 0, 1));
 // `
 
-const clipped = ({ tl, tr, bl, br, cornerSize }: Corners) => css`
+const clipped = ({ tl, tr, bl, br, cornerSize = '16px' }: Corners) => css`
      padding: 1rem 2rem;
      clip-path: polygon(${tl ? `0 ${cornerSize}, ${cornerSize} 0,` : '0 0,'} ${tr ? `calc(100% - ${cornerSize}) 0, 100% ${cornerSize},` : '100% 0,'} ${br ? `100% calc(100% - ${cornerSize}), calc(100% - ${cornerSize}) 100%,` : '100% 100%,'}  ${bl ? `${cornerSize} 100%, 0 calc(100% - ${cornerSize})` : '0 100%'});
 `

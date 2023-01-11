@@ -7,6 +7,7 @@ import { useModal } from '../hooks'
 import * as React from 'react'
 import { StarField } from '../components/star-field'
 import { textMD } from '../theme'
+import { ClippedCard } from '../components/clipped-card'
 
 const main = css`
   align-items: center;
@@ -15,6 +16,14 @@ const main = css`
   min-height: 100vh;
   padding: 2rem;
   position: relative;
+  flex-direction: column;
+  gap: 1rem;
+`
+
+const gameWrapper = css`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 `
 
 const grid = css`
@@ -23,7 +32,14 @@ const grid = css`
   grid-row-gap: 1rem;
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: repeat(3, 1fr);
-  max-width: 40rem;
+  max-width: 50rem;
+`
+
+const scores = css`
+width: 100%;
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-template-columns: 1fr 1fr;
 `
 
 export const Game = () => {
@@ -54,19 +70,24 @@ export const Game = () => {
     return (
         <main css={main}>
             <StarField count={200} />
-            <div>
-                <div>
-                    Score: {picked.length}
-                </div>
-                <div>
-                    Top Score: {topScore}
-                </div>
+            <div css={gameWrapper}>
+                <section css={scores}>
+                    <ClippedCard tl br blur>
+                        Score: {picked.length}
+                    </ClippedCard>
+                    <ClippedCard tr bl blur>
+                        <div style={{ textAlign: 'right' }}>
+                            Top Score: {topScore}
+                        </div>
+                    </ClippedCard>
+                </section>
                 <section css={grid}>
                     {options.map(tile => {
                         return (<Tile key={tile.label} {...tile} onClick={() => checkAnswer(tile.label)} />)
                     })}
                 </section>
             </div>
+
             <Modal isOpen={isStartModalOpen} toggle={toggleStartModal} title='To Boldy Go'>
                 <p css={textMD}>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
                 <Button variant='primary' onClick={start}>Start Game</Button>
