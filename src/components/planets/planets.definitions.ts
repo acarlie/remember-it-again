@@ -16,7 +16,8 @@ export interface PlanetColor extends PatternProps {
 
 export type PlanetAttributes = {
     pattern: Pattern
-    variance: number
+    variance1: number
+    variance2: number
 }
 
 export type PlanetProps = PlanetAttributes & PlanetColor

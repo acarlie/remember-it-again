@@ -8,30 +8,30 @@ export type OptionData = {
 
 export const options: OptionData[] = [
     {
-        label: 'Planet 1',
+        label: 'Cassian',
     },
     {
-        label: 'Planet 2',
+        label: 'Exo',
     },
     {
-        label: 'Planet 3',
+        label: 'Astra',
     },
     {
-        label: 'Rocket 1',
+        label: 'Nova',
     },
     {
-        label: 'Rocket 2',
+        label: 'Ursa',
     },
     {
-        label: 'Rocket 3',
+        label: 'Neo',
     },
     {
-        label: 'Solar System',
+        label: 'Astrid',
     },
     {
-        label: 'Satelite',
+        label: 'Gaius',
     },
     {
-        label: 'Observatory',
+        label: 'Apollo',
     },
 ]

@@ -65,17 +65,17 @@ const PatternComponents: Record<Pattern, any> = {
     patternFour: PatternFour
 }
 
-export const Planet = ({ pattern, hue, light, medium, dark, variance }: PlanetProps) => {
+export const Planet = ({ pattern, hue, light, medium, dark, variance1, variance2 }: PlanetProps) => {
     const PatternComponent = PatternComponents[pattern]
 
     return (
-        <div css={wrapper(processRandom(variance, 6, 9))}>
-            <div css={[absolutePosition(processRandom(variance, 60, 90)), planet]}>
+        <div css={wrapper(processRandom(variance1, 6, 9))}>
+            <div css={[absolutePosition(processRandom(variance1, 60, 80)), planet]}>
                 <PatternComponent light={light} medium={medium} dark={dark} />
                 <div css={[absolutePosition(100), atmosphereBase(.9), atmosphere1(hue)]} />
                 <div css={[absolutePosition(100), air]} />
             </div>
-            <div css={[absolutePosition(processRandom(variance, 85, 94)), atmosphereBase(.4), atmosphere2(hue)]} />
+            <div css={[absolutePosition(processRandom(variance2, 87, 95)), atmosphereBase(.4), atmosphere2(hue)]} />
             <div css={[absolutePosition(100), atmosphereBase(.2), atmosphere3(hue)]} />
         </div>
     )

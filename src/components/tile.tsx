@@ -22,13 +22,13 @@ export interface TileProps extends TileAttributes {
     planetColor: PlanetColor
 }
 
-export const Tile = ({ label, planetColor, pattern, variance, color, ...props }: TileProps) => {
+export const Tile = ({ label, planetColor, pattern, variance1, variance2, color, ...props }: TileProps) => {
     return (
         <button css={tileStyle} {...props}>
             <ClippedCard cornerSize='16px' tl tr blur>
                 <div style={{ width: '9rem', height: '9rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-                    <Planet {...planetColor} variance={variance} pattern={pattern} />
+                    <Planet {...planetColor} variance1={variance1} variance2={variance2} pattern={pattern} />
                 </div>
                 {label}
             </ClippedCard>

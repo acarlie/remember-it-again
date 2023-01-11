@@ -34,8 +34,9 @@ const createTiles = (options: OptionData[]) => {
     return options.map(option => {
         const pattern = patterns[getRandomInt(0, patterns.length)]
         const planetColor = planetColors[getRandomInt(0, planetColors.length)]
-        const variance = Math.random();
-        return { ...option, planetColor, pattern, variance } as TileProps
+        const variance1 = Math.random();
+        const variance2 = Math.random();
+        return { ...option, planetColor, pattern, variance1, variance2 } as TileProps
     })
 }
 
