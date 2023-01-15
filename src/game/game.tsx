@@ -5,8 +5,9 @@ import { GameContext } from './game-provider'
 import { Tile, Modal, Button } from '../components'
 import { useModal } from '../hooks'
 import * as React from 'react'
-import { textMD } from '../theme'
+import { textMD, heading1 } from '../theme'
 import { ClippedCard } from '../components/clipped-card'
+import { centerContent } from '../theme/utility.styles'
 
 const main = css`
   align-items: center;
@@ -43,7 +44,6 @@ const scores = css`
 
 export const Game = () => {
     const { picked, options, status, topScore, restart, checkAnswer, start } = React.useContext(GameContext)
-    const [isStartModalOpen, toggleStartModal] = useModal(true)
     const [isWinModalOpen, toggleWinModal] = useModal(false)
     const [isLoseModalOpen, toggleLoseModal] = useModal(false)
 
@@ -59,16 +59,21 @@ export const Game = () => {
             if (isLoseModalOpen) {
                 toggleLoseModal()
             }
-            if (isStartModalOpen) {
-                toggleStartModal()
-            }
         }
-    }, [status, toggleWinModal, toggleLoseModal, toggleStartModal, isLoseModalOpen, isWinModalOpen, isStartModalOpen])
+    }, [status, toggleWinModal, toggleLoseModal, isLoseModalOpen, isWinModalOpen])
 
 
     return (
         <main css={main}>
-            <div css={gameWrapper}>
+            {status === 'start' &&
+                (<div css={centerContent({ h: true, v: true, g: '2rem' })}>
+                    <h2 css={heading1}>To Boldy Go</h2>
+                    <p css={textMD}>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
+                    <Button variant='primary' onClick={start}>Start Game</Button>
+                </div>)
+            }
+
+            {status !== 'start' && (<div css={gameWrapper}>
                 <section css={scores}>
                     <ClippedCard tl br blur>
                         Score: {picked.length}
@@ -84,12 +89,8 @@ export const Game = () => {
                         return (<Tile key={tile.label} {...tile} onClick={() => checkAnswer(tile.label)} />)
                     })}
                 </section>
-            </div>
+            </div>)}
 
-            <Modal isOpen={isStartModalOpen} toggle={toggleStartModal} title='To Boldy Go'>
-                <p css={textMD}>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
-                <Button variant='primary' onClick={start}>Start Game</Button>
-            </Modal>
             <Modal isOpen={isWinModalOpen} toggle={toggleWinModal} title="You Won!">
                 <Button variant='primary' onClick={restart}>New Game</Button>
             </Modal>

@@ -3,7 +3,7 @@ import { theme } from './theme'
 
 const headingColor = theme.color.neutral600
 const headingLineHeight = 1.25
-const textLineHeight = .5
+const textLineHeight = 1.5
 const headingFontWeightBold = 600
 const textFontWeight = 500
 const headingFont = `'${theme.font.heading}', sans-serif`
