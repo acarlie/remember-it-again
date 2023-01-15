@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/to-boldy-go/static/css/main.325cf71c.css",
+    "main.js": "/to-boldy-go/static/js/main.f718ab64.js",
+    "static/js/787.8ec72419.chunk.js": "/to-boldy-go/static/js/787.8ec72419.chunk.js",
+    "index.html": "/to-boldy-go/index.html",
+    "main.325cf71c.css.map": "/to-boldy-go/static/css/main.325cf71c.css.map",
+    "main.f718ab64.js.map": "/to-boldy-go/static/js/main.f718ab64.js.map",
+    "787.8ec72419.chunk.js.map": "/to-boldy-go/static/js/787.8ec72419.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.325cf71c.css",
+    "static/js/main.f718ab64.js"
+  ]
+}
