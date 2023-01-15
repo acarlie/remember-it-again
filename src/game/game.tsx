@@ -5,19 +5,18 @@ import { GameContext } from './game-provider'
 import { Tile, Modal, Button } from '../components'
 import { useModal } from '../hooks'
 import * as React from 'react'
-import { StarField } from '../components/star-field'
 import { textMD } from '../theme'
 import { ClippedCard } from '../components/clipped-card'
 
 const main = css`
   align-items: center;
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;
   position: relative;
-  flex-direction: column;
-  gap: 1rem;
 `
 
 const gameWrapper = css`
@@ -36,10 +35,10 @@ const grid = css`
 `
 
 const scores = css`
-width: 100%;
   display: grid;
   grid-column-gap: 1rem;
   grid-template-columns: 1fr 1fr;
+  width: 100%;
 `
 
 export const Game = () => {
@@ -69,7 +68,6 @@ export const Game = () => {
 
     return (
         <main css={main}>
-            <StarField count={200} />
             <div css={gameWrapper}>
                 <section css={scores}>
                     <ClippedCard tl br blur>
