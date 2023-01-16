@@ -9,7 +9,7 @@ import { textMD, heading1 } from '../theme'
 import { ClippedCard } from '../components/clipped-card'
 import { centerContent } from '../theme/utility.styles'
 import { SVGClipped } from '../components/svg-clipped'
-import { SVGClippedGrid } from '../components/svg-clipped-grid'
+import { Card } from '../components/card'
 const main = css`
   align-items: center;
   display: flex;
@@ -75,7 +75,9 @@ export const Game = () => {
 
                     <div style={{ width: '400px', height: '200px' }}>
 
-                        <SVGClippedGrid />
+                        <Card tl br>
+                            Testing
+                        </Card>
                     </div>
                 </div>)
             }
