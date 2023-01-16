@@ -14,7 +14,7 @@ const modalWrapper = css`
     align-items: center;
     backdrop-filter: blur( 6.5px );
     -webkit-backdrop-filter: blur( 6.5px );
-    background: ${updateOpacity(theme.color.neutral0, .8)};
+    background: ${updateOpacity(theme.color.neutral100, .8)};
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     height: 100vh;

@@ -19,7 +19,7 @@ const base = css`
 `
 
 const primary = css`
-    background: ${theme.color.primary};
+    background: ${theme.color.primary200};
 `
 
 const secondary = css`

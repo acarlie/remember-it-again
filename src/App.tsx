@@ -6,8 +6,8 @@ import { theme } from './theme/theme'
 import { StarField } from './components/star-field'
 
 const app = css`
-  background: ${theme.color.neutral0};
-  color: ${theme.color.neutral500};
+  background: ${theme.color.neutral100};
+  color: ${theme.color.neutral700};
   position: relative;
 `
 

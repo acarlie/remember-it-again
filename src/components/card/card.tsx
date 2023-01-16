@@ -3,16 +3,7 @@
 
 import { css, keyframes } from "@emotion/react"
 
-
-
-type GlowCardAnimationProps = {
-    length: number
-    delay: number
-}
-
-type CardAnimationProp = {
-    animation?: GlowCardAnimationProps | undefined
-}
+import { GlowAnimationProps, SideProps, CornerProps, CardProps } from "./card.definitions"
 
 const glow = keyframes`
     0%, 100% {
@@ -49,7 +40,7 @@ const stroke = css`
     filter: drop-shadow(0px 0px 3px rgba(0, 255, 255, .5));
 `
 
-const animate = ({ length, delay }: GlowCardAnimationProps) => css`
+const animate = ({ length, delay }: GlowAnimationProps) => css`
     animation: ${glow} ${length}ms linear ${delay}ms infinite;
 `
 
@@ -67,13 +58,6 @@ const grid = css`
     width: 100%;
 `
 
-type SideProps = CardAnimationProp & {
-    rotation: number
-}
-
-type CornerProps = SideProps & {
-    isClipped?: boolean
-}
 
 const Corner = ({ rotation, animation, isClipped }: CornerProps) => {
     const path = isClipped ? "M22,2H18l-16,16v4" : "M22,2H2,2v20"
@@ -104,16 +88,6 @@ const SideVertical = ({ rotation, animation }: SideProps) => (
     </svg>
 )
 
-type Corners = {
-    tl?: boolean
-    tr?: boolean
-    bl?: boolean
-    br?: boolean
-}
-
-type CardProps = Corners & CardAnimationProp & {
-    children: React.ReactNode
-}
 
 export const Card = ({ tl, tr, bl, br, children, animation }: CardProps) => {
 

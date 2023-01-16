@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { theme } from './theme'
 
-const headingColor = theme.color.neutral600
+const headingColor = theme.color.neutral800
 const headingLineHeight = 1.25
 const textLineHeight = 1.5
 const headingFontWeightBold = 600
