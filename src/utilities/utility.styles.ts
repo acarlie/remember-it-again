@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { RemValue, updateOpacity, theme } from './theme'
+import { RemValue, updateOpacity, theme } from '../theme/theme'
 
 type CenterContentProps = {
     g: RemValue

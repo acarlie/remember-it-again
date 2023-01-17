@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
 
-import { css, SerializedStyles } from '@emotion/react'
+import { css } from '@emotion/react'
 import { GameContext } from './game-provider'
 import { Modal, Button } from '../components'
 import { Play } from './play'
 import { Start } from './start'
+import { StyleRecord } from '../utilities'
 import { useModal } from '../hooks'
 import * as React from 'react'
 
-const gameStyles: Record<string, SerializedStyles> = {
+const gameStyles: StyleRecord = {
     main: css`
         align-items: center;
         display: flex;

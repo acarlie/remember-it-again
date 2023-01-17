@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
-import { centerContent } from '../theme/utility.styles'
-import { css, SerializedStyles } from '@emotion/react'
+import { css } from '@emotion/react'
 import { GameContext } from './game-provider'
+import { StyleRecord, centerContent } from '../utilities'
 import { Text, OutlineCard, Button } from '../components'
 import * as React from 'react'
 
-const startStyles: Record<string, SerializedStyles> = {
+const startStyles: StyleRecord = {
     innerWrapper: css`
         display: flex;
         flex-direction: column;

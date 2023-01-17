@@ -1,7 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
-import { css, keyframes, SerializedStyles } from "@emotion/react"
-import { getRandomInt } from '../utilities'
+/**
+ * TODO: Optimize Stars
+ * - Reduce star variants to set number to cut down on inline styling used
+ */
+
+import { css, keyframes } from "@emotion/react"
+import { getRandomInt, StyleRecord } from '../utilities'
 
 type StarFieldProps = {
     count: number
@@ -25,7 +30,7 @@ const twinkle = keyframes`
     }
 `
 
-const starfieldStyles: Record<string, SerializedStyles> = {
+const starfieldStyles: StyleRecord = {
     field: css`
         width: 100%;
         height: 100%;
