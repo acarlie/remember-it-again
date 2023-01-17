@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
-import { css, keyframes } from "@emotion/react"
 import CSS from 'csstype';
 
+import { css, keyframes } from "@emotion/react"
 import { GlowAnimationProps, SideProps, CornerProps, CardProps } from "./card.definitions"
-
 
 const cornerSize = '22px'
 
@@ -33,32 +32,31 @@ const cardStyles = {
 
         .container {
             overflow: visible;
-            
-            .fill {
-                opacity: 0.2;
-                fill: aqua;
-            }
+        }
 
-            [class^="stroke"] {
-                fill: none;
-                stroke-miterlimit: 10;
-                filter: drop-shadow(0px 0px 3px rgba(0, 255, 255, .5));
-                animation-name: ${animations.glow};
-            }
+        .fill {
+            opacity: 0.2;
+            fill: aqua;
+        }
 
-            .stroke-top {
-                stroke: #c5fffd;
-                stroke-width: 2px;
-            }
+        [class^="stroke"] {
+            fill: none;
+            stroke-miterlimit: 10;
+            filter: drop-shadow(0px 0px 3px rgba(0, 255, 255, .5));
+            animation-name: ${animations.glow};
+        }
 
-            .stroke-bottom {
-                stroke: aqua;
-                stroke-width: 3px;
-            }
+        .stroke-top {
+            stroke: #c5fffd;
+            stroke-width: 2px;
+        }
+
+        .stroke-bottom {
+            stroke: aqua;
+            stroke-width: 3px;
         }
     `
 }
-
 
 const animate = ({ length, delay }: GlowAnimationProps) => {
     const ret: CSS.Properties = {
@@ -98,30 +96,29 @@ const SideVertical = ({ rotation, animation }: SideProps) => (
     </svg>
 )
 
+// NOTE: Only using emotion on top level component to reduce repeated <style> tags rendering
+// TODO: Explore other ways to use Emotion in sub-components
+export const Card = ({ tl, tr, bl, br, children, animation }: CardProps) => (
+    <div css={cardStyles.grid}>
 
-export const Card = ({ tl, tr, bl, br, children, animation }: CardProps) => {
+        {/* Top */}
+        <Corner rotation={0} isClipped={tl} animation={animation} />
+        <SideHorizontal rotation={0} animation={animation} />
+        <Corner rotation={90} isClipped={tr} animation={animation} />
 
-    return (
-        <div css={cardStyles.grid}>
+        {/* Center */}
+        <SideVertical rotation={0} animation={animation} />
+        <div css={cardStyles.content}>
+            {children}
+        </div>
+        <SideVertical rotation={180} animation={animation} />
 
-            {/* Top */}
-            <Corner rotation={0} isClipped={tl} animation={animation} />
-            <SideHorizontal rotation={0} animation={animation} />
-            <Corner rotation={90} isClipped={tr} animation={animation} />
+        {/* Bottom */}
+        <Corner rotation={270} isClipped={bl} animation={animation} />
+        <SideHorizontal rotation={180} animation={animation} />
+        <Corner rotation={180} isClipped={br} animation={animation} />
 
-            {/* Center */}
-            <SideVertical rotation={0} animation={animation} />
-            <div css={cardStyles.content}>
-                {children}
-            </div>
-            <SideVertical rotation={180} animation={animation} />
+    </div >
+)
 
-            {/* Bottom */}
-            <Corner rotation={270} isClipped={bl} animation={animation} />
-            <SideHorizontal rotation={180} animation={animation} />
-            <Corner rotation={180} isClipped={br} animation={animation} />
-
-        </div >
-    )
-}
 

@@ -8,7 +8,6 @@ import * as React from 'react'
 import { textMD, heading1 } from '../theme'
 import { ClippedCard } from '../components/clipped-card'
 import { centerContent } from '../theme/utility.styles'
-import { SVGClipped } from '../components/svg-clipped'
 import { Card } from '../components/card/card'
 const main = css`
   align-items: center;
@@ -71,12 +70,15 @@ export const Game = () => {
                     <h2 css={heading1}>To Boldy Go</h2>
                     <p css={textMD}>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
                     <Button variant='primary' onClick={start}>Start Game</Button>
-                    <SVGClipped />
 
                     <div style={{ width: '400px', height: '200px' }}>
 
                         <Card tl br bl animation={{ delay: 0, length: 3000 }}>
                             Testing
+                        </Card>
+
+                        <Card tl br bl animation={{ delay: 0, length: 3000 }}>
+                            Testing2
                         </Card>
                     </div>
                 </div>)
