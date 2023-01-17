@@ -8,7 +8,7 @@ import * as React from 'react'
 import { textMD, heading1 } from '../theme'
 import { Card } from '../components/cards/card'
 import { centerContent } from '../theme/utility.styles'
-import { OutlineCard } from '../components/cards/outline-card'
+import { OutlineCard } from '../components/cards'
 
 const main = css`
   align-items: center;
@@ -68,9 +68,15 @@ export const Game = () => {
         <main css={main}>
             {status === 'start' &&
                 (<div css={centerContent({ h: true, v: true, g: '2rem' })}>
-                    <h2 css={heading1}>To Boldy Go</h2>
-                    <p css={textMD}>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
-                    <Button variant='primary' onClick={start}>Start Game</Button>
+                    <OutlineCard tl tr> Top Score: {topScore} </OutlineCard>
+
+                    <OutlineCard bl>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <h2 css={heading1} style={{ lineHeight: 1 }}>To Boldy Go</h2>
+                            <p css={textMD}>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
+                            <Button variant='primary' onClick={start}>Start Game</Button>
+                        </div>
+                    </OutlineCard>
                 </div>)
             }
 

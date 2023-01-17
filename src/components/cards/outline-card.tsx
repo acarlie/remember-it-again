@@ -83,7 +83,6 @@ const Corner = ({ rotation, animation, isClipped, cornerSize = defaultCornerSize
 
     return (
         <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 22 22">
-            {/* <path className="fill" d={`${path}H22Z`} /> */}
             <path className="stroke-bottom" d={path} style={animation && outlineCardStyles.getAnimationStyles(animation)} />
             <path className="stroke-top" d={path} style={animation && outlineCardStyles.getAnimationStyles(animation)} />
         </svg>
@@ -92,17 +91,15 @@ const Corner = ({ rotation, animation, isClipped, cornerSize = defaultCornerSize
 
 const SideHorizontal = ({ rotation, animation }: SideProps) => (
     <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 60 22" preserveAspectRatio="none">
-        {/* <rect className="fill" y="2" width="60" height="20" /> */}
         <line className="stroke-bottom" x1="60" y1="2" y2="2" style={animation && outlineCardStyles.getAnimationStyles(animation)} />
         <line className="stroke-top" x1="60" y1="2" y2="2" style={animation && outlineCardStyles.getAnimationStyles(animation)} />
     </svg>
 )
 
 const SideVertical = ({ rotation, animation }: SideProps) => (
-    <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 22 60" preserveAspectRatio="none">
-        {/* <rect className="fill" x="2" width="20" height="60" /> */}
-        <line className="stroke-bottom" x1="2" x2="2" y2="60" style={animation && outlineCardStyles.getAnimationStyles(animation)} />
-        <line className="stroke-top" x1="2" x2="2" y2="60" style={animation && outlineCardStyles.getAnimationStyles(animation)} />
+    <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 22 16" preserveAspectRatio="none">
+        <line className="stroke-bottom" x1="2" x2="2" y2="16" style={animation && outlineCardStyles.getAnimationStyles(animation)} />
+        <line className="stroke-top" x1="2" x2="2" y2="16" style={animation && outlineCardStyles.getAnimationStyles(animation)} />
     </svg>
 )
 
