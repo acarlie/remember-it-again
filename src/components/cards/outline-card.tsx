@@ -1,11 +1,10 @@
 /** @jsxImportSource @emotion/react */
 
-import CSS from 'csstype';
-
+import { backgroundBlur } from '../../theme/utility.styles';
+import { Card } from './card';
 import { css, keyframes } from "@emotion/react"
 import { defaultCornerSize, GlowAnimationProps, SideProps, CornerProps, OutlineCardProps } from "./card.definitions"
-import { Card } from './card';
-import { backgroundBlur } from '../../theme/utility.styles';
+import CSS from 'csstype';
 
 const svgPadding = 2
 const svgCornerSize = 22

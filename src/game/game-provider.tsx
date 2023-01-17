@@ -1,8 +1,7 @@
-import * as React from 'react'
 import { options, OptionData, topScoreKey, Status } from './game.definitions'
 import { shuffle, getRandomInt } from '../utilities'
-import { planetColors, patterns } from '../components/planets'
-import { TileProps } from '../components'
+import { TileProps, planetColors, patterns } from '../components'
+import * as React from 'react'
 
 type GameContextProps = {
     options: TileProps[]

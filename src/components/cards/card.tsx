@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
-import CSS from 'csstype';
 
 import { CardProps, Corners, defaultCornerSize } from './card.definitions';
+import CSS from 'csstype';
 
 const cardStyles = {
     getClipPathStyles: ({ tl, tr, bl, br, cornerSize }: Corners) => {

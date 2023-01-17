@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 
-import * as React from 'react'
 import { css } from '@emotion/react'
 import { OptionData } from '../game/game.definitions'
+import { OutlineCard } from './cards'
 import { Planet } from './planets/planet'
 import { PlanetColor, PlanetAttributes } from './planets/planets.definitions'
-import { OutlineCard } from './cards'
+import * as React from 'react'
 
 const tileStyle = css`
     opacity: .75;

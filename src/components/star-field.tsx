@@ -1,21 +1,11 @@
 /** @jsxImportSource @emotion/react */
 
-import { css, keyframes } from "@emotion/react"
+import { css, keyframes, SerializedStyles } from "@emotion/react"
 import { getRandomInt } from '../utilities'
 
 type StarFieldProps = {
     count: number
 }
-
-const field = css`
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    opacity: .4;
-`
 
 const twinkle = keyframes`
     0% {
@@ -35,29 +25,57 @@ const twinkle = keyframes`
     }
 `
 
-const star = (x: number, y: number, size: number, glow: number, opacity: number, twinkleChance: number) => css`
-    position: absolute;
-    top: ${x}vh;
-    left: ${y}vw;
-    width: ${size + 1}px;
-    height: ${size + 1}px;
-    background: rgba(255, 255, 255, 1);
-    border-radius: 3px;
-    box-shadow: 0 0 ${glow}px blue, 0 0 ${glow}px white;
-    opacity: ${twinkleChance > 7 ? 1 : opacity / 10};
-    animation: ${twinkleChance > 7 ? twinkle : 'none'} 5s infinite linear;
-    animation-delay: ${3 / glow}s;
-`
+const starfieldStyles: Record<string, SerializedStyles> = {
+    field: css`
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        opacity: .4;
+    `,
+    star: css`
+        position: absolute;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 3px;
+        animation-name: ${twinkle};
+    `,
+}
+
 
 export const StarField = ({ count }: StarFieldProps) => {
     const stars = [...Array(count)].map((_val, idx) => idx)
 
     return (
-        <div css={field}>
+        <div css={starfieldStyles.field}>
             {
-                stars.map(s => (
-                    <div css={star(getRandomInt(1, 100), getRandomInt(1, 100), getRandomInt(1, 3), getRandomInt(2, 15), getRandomInt(1, 10), getRandomInt(1, 10))} key={`star-${s}`} />
-                ))
+                stars.map(s => {
+                    const x = getRandomInt(1, 100)
+                    const y = getRandomInt(1, 100)
+                    const size = getRandomInt(1, 3)
+                    const glow = getRandomInt(2, 15)
+                    const opacity = getRandomInt(1, 10)
+                    const twinkleChance = getRandomInt(1, 10) > 7
+                    return (
+                        <div
+                            css={starfieldStyles.star}
+                            style={{
+                                top: `${x}vh`,
+                                left: `${y}vw`,
+                                width: `${size + 1}px`,
+                                height: `${size + 1}px`,
+                                boxShadow: `0 0 ${glow}px blue, 0 0 ${glow}px white`,
+                                opacity: `${twinkleChance ? 1 : opacity / 10}`,
+                                animationDuration: twinkleChance ? '5s' : '0',
+                                animationIterationCount: twinkleChance ? 'infinite' : '',
+                                animationTimingFunction: twinkleChance ? 'linear' : '',
+                                animationDelay: twinkleChance ? `${3 / glow}s` : '',
+                            }}
+                            key={`star-${s}`}
+                        />
+                    )
+                })
             }
 
         </div>

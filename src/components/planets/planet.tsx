@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react"
-import { PatternOne, PatternTwo, PatternThree, PatternFour } from "./patterns"
 import { Pattern, PlanetProps, Hue } from "./planets.definitions"
+import { PatternOne, PatternTwo, PatternThree, PatternFour } from "./patterns"
 import { processRandom } from "../../utilities"
 
 const absolutePosition = (size: number) => css`
