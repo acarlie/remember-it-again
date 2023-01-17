@@ -3,7 +3,7 @@
 import CSS from 'csstype';
 
 import { css, keyframes } from "@emotion/react"
-import { GlowAnimationProps, SideProps, CornerProps, CardProps } from "./card.definitions"
+import { GlowAnimationProps, SideProps, CornerProps, OutlineCardProps } from "./outline-card.definitions"
 
 const cornerSize = '22px'
 
@@ -58,7 +58,7 @@ const cardStyles = {
     `
 }
 
-const animate = ({ length, delay }: GlowAnimationProps) => {
+const getAnimationStyles = ({ length, delay }: GlowAnimationProps) => {
     const ret: CSS.Properties = {
         animationDuration: `${length}ms`,
         animationDelay: `${delay}ms`,
@@ -74,8 +74,8 @@ const Corner = ({ rotation, animation, isClipped }: CornerProps) => {
     return (
         <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 22 22">
             <path className="fill" d={`${path}H22Z`} />
-            <path className="stroke-bottom" d={path} style={animation && animate(animation)} />
-            <path className="stroke-top" d={path} style={animation && animate(animation)} />
+            <path className="stroke-bottom" d={path} style={animation && getAnimationStyles(animation)} />
+            <path className="stroke-top" d={path} style={animation && getAnimationStyles(animation)} />
         </svg>
     )
 }
@@ -83,22 +83,22 @@ const Corner = ({ rotation, animation, isClipped }: CornerProps) => {
 const SideHorizontal = ({ rotation, animation }: SideProps) => (
     <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 60 22" preserveAspectRatio="none">
         <rect className="fill" y="2" width="60" height="20" />
-        <line className="stroke-bottom" x1="60" y1="2" y2="2" style={animation && animate(animation)} />
-        <line className="stroke-top" x1="60" y1="2" y2="2" style={animation && animate(animation)} />
+        <line className="stroke-bottom" x1="60" y1="2" y2="2" style={animation && getAnimationStyles(animation)} />
+        <line className="stroke-top" x1="60" y1="2" y2="2" style={animation && getAnimationStyles(animation)} />
     </svg>
 )
 
 const SideVertical = ({ rotation, animation }: SideProps) => (
     <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 22 60" preserveAspectRatio="none">
         <rect className="fill" x="2" width="20" height="60" />
-        <line className="stroke-bottom" x1="2" x2="2" y2="60" style={animation && animate(animation)} />
-        <line className="stroke-top" x1="2" x2="2" y2="60" style={animation && animate(animation)} />
+        <line className="stroke-bottom" x1="2" x2="2" y2="60" style={animation && getAnimationStyles(animation)} />
+        <line className="stroke-top" x1="2" x2="2" y2="60" style={animation && getAnimationStyles(animation)} />
     </svg>
 )
 
 // NOTE: Only using emotion on top level component to reduce repeated <style> tags rendering
 // TODO: Explore other ways to use Emotion in sub-components
-export const Card = ({ tl, tr, bl, br, children, animation }: CardProps) => (
+export const OutlineCard = ({ tl, tr, bl, br, children, animation }: OutlineCardProps) => (
     <div css={cardStyles.grid}>
 
         {/* Top */}

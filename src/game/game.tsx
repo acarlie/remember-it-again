@@ -6,9 +6,10 @@ import { Tile, Modal, Button } from '../components'
 import { useModal } from '../hooks'
 import * as React from 'react'
 import { textMD, heading1 } from '../theme'
-import { ClippedCard } from '../components/clipped-card'
+import { Card } from '../components/cards/card'
 import { centerContent } from '../theme/utility.styles'
-import { Card } from '../components/card/card'
+import { OutlineCard } from '../components/cards/outline-card'
+
 const main = css`
   align-items: center;
   display: flex;
@@ -73,27 +74,27 @@ export const Game = () => {
 
                     <div style={{ width: '400px', height: '200px' }}>
 
-                        <Card tl br bl animation={{ delay: 0, length: 3000 }}>
+                        <OutlineCard tl br bl animation={{ delay: 0, length: 3000 }}>
                             Testing
-                        </Card>
+                        </OutlineCard>
 
-                        <Card tl br bl animation={{ delay: 0, length: 3000 }}>
+                        <OutlineCard tl br bl animation={{ delay: 0, length: 3000 }}>
                             Testing2
-                        </Card>
+                        </OutlineCard>
                     </div>
                 </div>)
             }
 
             {status !== 'start' && (<div css={gameWrapper}>
                 <section css={scores}>
-                    <ClippedCard tl br blur>
+                    <Card tl br>
                         Score: {picked.length}
-                    </ClippedCard>
-                    <ClippedCard tr bl blur>
+                    </Card>
+                    <Card tr bl>
                         <div style={{ textAlign: 'right' }}>
                             Top Score: {topScore}
                         </div>
-                    </ClippedCard>
+                    </Card>
                 </section>
                 <section css={grid}>
                     {options.map(tile => {

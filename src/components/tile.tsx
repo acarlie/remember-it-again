@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { css } from '@emotion/react'
 import { OptionData } from '../game/game.definitions'
-import { ClippedCard } from './clipped-card'
+import { Card } from './cards/card'
 import { Planet } from './planets/planet'
 import { PlanetColor, PlanetAttributes } from './planets/planets.definitions'
 
@@ -25,13 +25,13 @@ export interface TileProps extends TileAttributes {
 export const Tile = ({ label, planetColor, pattern, variance1, variance2, color, ...props }: TileProps) => {
     return (
         <button css={tileStyle} {...props}>
-            <ClippedCard cornerSize='16px' tl tr blur>
+            <Card cornerSize='16px' tl tr>
                 <div style={{ width: '9rem', height: '9rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
                     <Planet {...planetColor} variance1={variance1} variance2={variance2} pattern={pattern} />
                 </div>
                 {label}
-            </ClippedCard>
+            </Card>
         </button>
     )
 }

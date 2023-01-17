@@ -22,6 +22,6 @@ export type Corners = {
     br?: boolean
 }
 
-export type CardProps = Corners & CardAnimationProp & {
+export type OutlineCardProps = Corners & CardAnimationProp & {
     children: React.ReactNode
 }
