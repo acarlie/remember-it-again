@@ -3,6 +3,7 @@
 import * as React from 'react'
 import { css } from '@emotion/react'
 import { theme } from '../theme'
+import { Card } from './cards'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant: ButtonVariant
@@ -11,23 +12,28 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 type ButtonVariant = 'primary' | 'secondary'
 
-const base = css`
-    padding: .5rem 1.25rem;
-    cursor: pointer;
-    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
-    overflow: hidden;
-`
+const buttonStyles = {
+    base: css`
+        cursor: pointer;
+        font-weight: 700;
+        color: ${theme.color.neutral100};
+        text-transform: uppercase;
+        font-size: 1.125rem;
 
-const primary = css`
-    background: ${theme.color.primary200};
-`
+        .card {
+            padding: .5rem 1.25rem;
+            background-color: aqua;
+        }
+    `
+}
 
-const secondary = css`
-    background:  ${theme.color.neutral100};
-`
 
 export const Button = ({ variant, children, ...props }: ButtonProps) => {
     return (
-        <button css={[base, variant === 'primary' ? primary : secondary]} {...props}>{children}</button>
+        <button css={buttonStyles.base} {...props}>
+            <Card tr bl customClassName='card' cornerSize={8}>
+                {children}
+            </Card>
+        </button>
     )
 }

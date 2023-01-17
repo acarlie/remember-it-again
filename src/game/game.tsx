@@ -6,7 +6,6 @@ import { Tile, Modal, Button } from '../components'
 import { useModal } from '../hooks'
 import * as React from 'react'
 import { textMD, heading1 } from '../theme'
-import { Card } from '../components/cards/card'
 import { centerContent } from '../theme/utility.styles'
 import { OutlineCard } from '../components/cards'
 
@@ -74,7 +73,7 @@ export const Game = () => {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <h2 css={heading1} style={{ lineHeight: 1 }}>To Boldy Go</h2>
                             <p css={textMD}>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
-                            <Button variant='primary' onClick={start}>Start Game</Button>
+                            <Button variant='primary' onClick={start}>Play</Button>
                         </div>
                     </OutlineCard>
                 </div>)
@@ -82,14 +81,14 @@ export const Game = () => {
 
             {status !== 'start' && (<div css={gameWrapper}>
                 <section css={scores}>
-                    <Card tl br>
+                    <OutlineCard tl br>
                         Score: {picked.length}
-                    </Card>
-                    <Card tr bl>
+                    </OutlineCard >
+                    <OutlineCard tr bl>
                         <div style={{ textAlign: 'right' }}>
                             Top Score: {topScore}
                         </div>
-                    </Card>
+                    </OutlineCard >
                 </section>
                 <section css={grid}>
                     {options.map(tile => {

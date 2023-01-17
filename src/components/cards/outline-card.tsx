@@ -5,6 +5,7 @@ import CSS from 'csstype';
 import { css, keyframes } from "@emotion/react"
 import { defaultCornerSize, GlowAnimationProps, SideProps, CornerProps, OutlineCardProps } from "./card.definitions"
 import { Card } from './card';
+import { backgroundBlur } from '../../theme/utility.styles';
 
 const svgPadding = 2
 const svgCornerSize = 22
@@ -29,9 +30,11 @@ const outlineCardStyles = {
         left: 0;
         width: 100%;
         height: 100%;
-        > * {
+
+        .card {
             width: 100%;
             height: 100%;
+            ${backgroundBlur}
         }
     `,
     container: css`
@@ -108,7 +111,7 @@ const SideVertical = ({ rotation, animation }: SideProps) => (
 export const OutlineCard = ({ tl, tr, bl, br, children, animation, cornerSize }: OutlineCardProps) => (
     <div css={outlineCardStyles.container}>
         <div css={outlineCardStyles.background}>
-            <Card tl={tl} tr={tr} bl={bl} cornerSize={cornerSize} />
+            <Card customClassName="card" tl={tl} tr={tr} bl={bl} cornerSize={cornerSize} />
         </div>
         <div css={outlineCardStyles.grid}>
             {/* Top */}

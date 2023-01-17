@@ -31,6 +31,7 @@ export type Corners = CornerSizeProp & {
 }
 
 export type CardProps = Corners & {
+    customClassName?: string
     children?: React.ReactNode
 }
 
