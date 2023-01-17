@@ -71,17 +71,6 @@ export const Game = () => {
                     <h2 css={heading1}>To Boldy Go</h2>
                     <p css={textMD}>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
                     <Button variant='primary' onClick={start}>Start Game</Button>
-
-                    <div style={{ width: '400px', height: '200px' }}>
-
-                        <OutlineCard tl br bl animation={{ delay: 0, length: 3000 }}>
-                            Testing
-                        </OutlineCard>
-
-                        <OutlineCard tl br bl animation={{ delay: 0, length: 3000 }}>
-                            Testing2
-                        </OutlineCard>
-                    </div>
                 </div>)
             }
 

@@ -1,3 +1,3 @@
 export * from './card'
 export * from './outline-card'
-export * from './outline-card.definitions'
+export * from './card.definitions'
