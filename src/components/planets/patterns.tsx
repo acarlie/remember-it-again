@@ -3,9 +3,8 @@
 import { PatternProps } from "./planets.definitions"
 
 /**
- * TODO: Update component to use className instead of inline styles
+ * @TODO Update component to use className instead of inline styles
  */
-
 export const PatternOne = ({ light, medium, dark }: PatternProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149.17 149.17">
         <polygon style={{ fill: dark }} points="149.17 14.84 0 14.84 0 16.67 149.17 23.61 149.17 14.84" />

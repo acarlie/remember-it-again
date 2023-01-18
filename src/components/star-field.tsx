@@ -1,10 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
 /**
- * TODO: Optimize Stars
- * - Reduce star variants to set number to cut down on inline styling used
+ * @TODO Optimize Stars: Reduce star variants to set number to cut down on inline styling used
  */
-
 import { css, keyframes } from "@emotion/react"
 import { getRandomInt, StyleRecord } from '../utilities'
 

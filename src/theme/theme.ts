@@ -7,7 +7,7 @@ const nonNeutralSteps = [100, 200, 300]
 type NonNeutralStep = typeof nonNeutralSteps[number]
 
 
-type ColorValue = `hsla(${string})`
+export type ColorValue = `hsla(${string})`
 export type Color = `primary${NonNeutralStep}` | `fuschia${NonNeutralStep}` | `lime${NonNeutralStep}` | `green${NonNeutralStep}` | Neutral
 
 type Font = 'heading' | 'text'
@@ -53,4 +53,4 @@ export const theme: Theme = {
     }
 }
 
-export const updateOpacity = (color: ColorValue, opacity: number) => opacity <= 1 && opacity >= 0 ? color.replace('1)', `${opacity})`) : color
+export const updateOpacity = (color: ColorValue, opacity: number) => opacity <= 1 && opacity >= 0 ? color.replace('1)', `${opacity})`) as ColorValue : color

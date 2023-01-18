@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { css, SerializedStyles } from '@emotion/react'
+import { css } from '@emotion/react'
 import { updateOpacity, theme } from '../theme'
 import { Text } from './text'
 import { StyleRecord } from '../utilities'
@@ -36,6 +36,9 @@ const modalStyles: StyleRecord = {
     `,
 }
 
+/**
+ * @TODO Accessibility: Focus trapping 
+ */
 export const Modal = ({ isOpen, toggle, title, children }: ModalProps) => {
     return (
         <div role='dialog' aria-modal='true' css={modalStyles.modalWrapper} style={{ display: isOpen ? 'flex' : 'none' }}>

@@ -1,52 +1,55 @@
 /** @jsxImportSource @emotion/react */
 
 import { Card } from './card';
-import { css, keyframes, Keyframes } from "@emotion/react"
-import { defaultCornerSize, GlowAnimationProps, SideProps, CornerProps, OutlineCardProps } from "./card.definitions"
-import { StyleRecord, backgroundBlur } from '../../utilities';
+import { css, keyframes, Keyframes, SerializedStyles } from "@emotion/react"
+import { defaultCornerSize, CardVariant, GlowAnimationProps, SideProps, CornerProps, OutlineCardProps } from "./card.definitions"
+import { StyleRecord } from '../../utilities';
+import { theme, updateOpacity, ColorValue } from '../../theme';
 import CSS from 'csstype';
 
 const svgPadding = 2
 const svgCornerSize = 22
 const svgInnerCornerSize = svgCornerSize - svgPadding
 
-const animations: Record<string, Keyframes> = {
-    glow: keyframes`
-        0%, 100% {
-            filter: drop-shadow(0px 0px 2px rgba(0, 255, 255, .5));
-        }
-        50% {
-            filter: drop-shadow(0px 0px 4px rgba(0, 255, 255, 1));
-        }
-    `
+const variants: Record<CardVariant, { medium: ColorValue, dark: ColorValue }> = {
+    primary: {
+        medium: theme.color.primary200,
+        dark: updateOpacity(theme.color.primary200, .5),
+    },
+    secondary: {
+        medium: theme.color.neutral600,
+        dark: updateOpacity(theme.color.neutral600, .75),
+    }
 }
 
-const outlineCardStyles: StyleRecord = {
-    background: css`
-        padding: ${svgPadding}px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-
-        .card {
-            width: 100%;
-            height: 100%;
-            ${backgroundBlur}
+const animations: Record<string, Keyframes> = {
+    glowPrimary: keyframes`
+        0%, 100% {
+            filter: drop-shadow(0px 0px 2px ${variants.primary.dark});
+        }
+        50% {
+            filter: drop-shadow(0px 0px 4px ${variants.primary.medium});
         }
     `,
-    container: css`
-      position: relative;
+    glowSecondary: keyframes`
+        0%, 100% {
+            filter: drop-shadow(0px 0px 2px ${variants.secondary.dark});
+        }
+        50% {
+            filter: drop-shadow(0px 0px 4px ${variants.secondary.medium});
+        }
     `,
+}
+
+const sharedStyles: StyleRecord = {
     grid: css`
-        position: relative;
-        z-index: 10;
         display: grid;
         grid-template-columns: ${svgCornerSize}px minmax(0px, auto) ${svgCornerSize}px;
         grid-template-rows: ${svgCornerSize}px minmax(0px, auto) ${svgCornerSize}px;
         height: 100%;
+        position: relative;
         width: 100%;
+        z-index: 10;
 
         .container {
             overflow: visible;
@@ -55,20 +58,85 @@ const outlineCardStyles: StyleRecord = {
         [class^="stroke"] {
             fill: none;
             stroke-miterlimit: 10;
-            filter: drop-shadow(0px 0px 3px rgba(0, 255, 255, .5));
-            animation-name: ${animations.glow};
         }
 
         .stroke-top {
-            stroke: #c5fffd;
             stroke-width: .75px;
+            stroke: rgba(255, 255, 255, .75);
         }
 
         .stroke-bottom {
-            stroke: aqua;
             stroke-width: 1px;
         }
+    `,
+    background: css`
+        height: 100%;
+        left: 0;
+        padding: ${svgPadding}px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+
+        .card {
+            -webkit-backdrop-filter: blur( .5px );
+            backdrop-filter: blur( .5px );
+            height: 100%;
+            width: 100%;
+        }
     `
+}
+
+const outlineCardStyles: StyleRecord = {
+    container: css`
+      position: relative;
+    `,
+}
+
+const variantStyles: Record<CardVariant, { grid: SerializedStyles, background: SerializedStyles }> = {
+    primary: {
+        grid: css`
+            ${sharedStyles.grid}
+
+            [class^="stroke"] {
+                filter: drop-shadow(0px 0px 3px ${variants.primary.dark});
+                animation-name: ${animations.glowPrimary};
+            }
+
+            .stroke-bottom {
+                stroke: ${variants.primary.medium};
+            }
+        `,
+        background: css`
+            ${sharedStyles.background}
+            
+            .card {
+                background: linear-gradient(130deg, ${updateOpacity(theme.color.primary200, .2)}, ${updateOpacity(theme.color.neutral100, 0)}) ;
+                box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            }
+        `
+    },
+    secondary: {
+        grid: css`
+            ${sharedStyles.grid}
+
+            [class^="stroke"] {
+                filter: drop-shadow(0px 0px 3px ${variants.secondary.dark});
+                animation-name: ${animations.glowSecondary};
+            }
+
+            .stroke-bottom {
+                stroke: ${variants.secondary.medium};
+            }
+        `,
+        background: css`
+            ${sharedStyles.background}
+            
+            .card {
+                background: linear-gradient(130deg, ${updateOpacity(theme.color.neutral700, .2)}, ${updateOpacity(theme.color.neutral100, 0)}) ;
+                box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            }
+        `
+    }
 }
 
 const getAnimationStyles = ({ length, delay }: GlowAnimationProps) => {
@@ -106,13 +174,15 @@ const SideVertical = ({ rotation, animation }: SideProps) => (
     </svg>
 )
 
-// NOTE: Only using emotion on top level component to reduce repeated <style> tags rendering
-export const OutlineCard = ({ tl, tr, bl, br, children, animation, cornerSize }: OutlineCardProps) => (
+/**
+ * @Note Only using emotion on top level component to reduce repeated <style> tags rendering
+ */
+export const OutlineCard = ({ tl, tr, bl, br, children, animation, cornerSize, variant = 'secondary' }: OutlineCardProps) => (
     <div css={outlineCardStyles.container}>
-        <div css={outlineCardStyles.background}>
+        <div css={variantStyles[variant].background}>
             <Card customClassName="card" tl={tl} tr={tr} bl={bl} cornerSize={cornerSize} />
         </div>
-        <div css={outlineCardStyles.grid}>
+        <div css={variantStyles[variant].grid}>
             {/* Top */}
             <Corner cornerSize={cornerSize} rotation={0} isClipped={tl} animation={animation} />
             <SideHorizontal rotation={0} animation={animation} />

@@ -96,10 +96,10 @@ type TextProps = {
     children: React.ReactNode
 }
 
+/**
+ * @TODO Fix type coersion
+ */
 export const Text = ({ tag = 'span', variant = 'textMD', color = headingTags.includes(tag) ? headingColor : textColor, children }: TextProps) => {
-    /**
-     * TODO: Fix type coersion
-     */
     const Tag = tag as keyof JSX.IntrinsicElements
     return (
         <Tag css={textStyles[variant]} style={{ color: theme.color[color] }}>

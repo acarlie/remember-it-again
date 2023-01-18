@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Color } from '../../theme'
 
 export type GlowAnimationProps = {
     length: number
@@ -36,5 +37,8 @@ export type CardProps = Corners & {
 }
 
 export type OutlineCardProps = Corners & CardAnimationProp & {
+    variant?: CardVariant
     children: React.ReactNode
 }
+
+export type CardVariant = 'primary' | 'secondary'

@@ -33,9 +33,9 @@ export const Start = () => {
         <div css={startStyles.wrapper}>
             <div css={startStyles.innerWrapper}>
                 <div css={startStyles.topRow}>
-                    <OutlineCard tl tr> Top Score: {topScore} </OutlineCard>
+                    <OutlineCard tl tr animation={{ length: 3000, delay: 0 }}> Top Score: {topScore} </OutlineCard>
                 </div>
-                <OutlineCard bl>
+                <OutlineCard bl variant='primary' animation={{ length: 3000, delay: 0 }}>
                     <div css={startStyles.mainCard}>
                         <Text tag="h2" variant="heading1">To Boldy Go</Text>
                         <Text tag='p' variant='textMD'>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</Text>

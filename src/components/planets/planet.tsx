@@ -87,7 +87,7 @@ const getAtmosphere3Styles = (hue: Hue) => {
 
 
 /**
- * TODO: Fix any
+ * @TODO Fix any
  * Seems to not accept JSX.Element, unclear why
  */
 const PatternComponents: Record<Pattern, any> = {
