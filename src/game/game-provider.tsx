@@ -40,7 +40,7 @@ const createTiles = (options: OptionData[]) => {
 }
 
 export const GameProvider = ({ children }: GameProviderProps) => {
-    const [topScore, setTopScore] = React.useState<number>(0)
+    const [topScore, setTopScore] = React.useState<number>(parseInt(localStorage.getItem(topScoreKey) ?? '0'))
     const [picked, setPickedTiles] = React.useState<string[]>([])
     const [gameTiles, setGameTiles] = React.useState<TileProps[]>(shuffle(createTiles(options)))
     const [gameStatus, setGameStatus] = React.useState<Status>('start')
@@ -79,12 +79,6 @@ export const GameProvider = ({ children }: GameProviderProps) => {
     }
 
     const start = () => {
-        const savedScore = localStorage.getItem(topScoreKey)
-
-        if (savedScore) {
-            setTopScore(parseInt(savedScore))
-        }
-
         setGameStatus('playing')
     }
 

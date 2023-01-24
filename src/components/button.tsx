@@ -19,10 +19,17 @@ const buttonStyles = {
         color: ${theme.color.neutral100};
         text-transform: uppercase;
         font-size: 1.125rem;
-
+    
         .card {
             padding: .5rem 1.25rem .4rem 1.125rem;
-            background: linear-gradient(to left, ${theme.color.primary100}, ${theme.color.primary300});
+            box-shadow: inset 0px 0px 9px  ${theme.color.primary100};
+            transition: box-shadow .25s;
+            background: linear-gradient(to left, ${theme.color.primary100}, ${theme.color.primary200});
+        }
+
+        :hover .card, :focus .card {
+            box-shadow: inset 0px 0px 13px ${theme.color.primary300};
+
         }
     `
 }

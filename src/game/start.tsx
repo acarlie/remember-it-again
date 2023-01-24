@@ -8,6 +8,10 @@ import { theme } from '../theme'
 import * as React from 'react'
 
 const startStyles: StyleRecord = {
+    buttonRow: css`
+        display: flex;
+        justify-content: flex-end;
+    `,
     innerWrapper: css`
         display: flex;
         flex-direction: column;
@@ -48,7 +52,9 @@ export const Start = () => {
                     <div css={startStyles.mainCard}>
                         <h2 css={startStyles.title}>To Boldy Go</h2>
                         <p>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
-                        <Button onClick={start}>Play</Button>
+                        <div css={startStyles.buttonRow}>
+                            <Button onClick={start}>Play</Button>
+                        </div>
                     </div>
                 </OutlineCard>
             </div>
