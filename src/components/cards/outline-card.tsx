@@ -22,8 +22,8 @@ const variants: Record<CardVariant, { medium: ColorValue, dark: ColorValue }> = 
     }
 }
 
-const animations: Record<string, Keyframes> = {
-    glowPrimary: keyframes`
+const animations: Record<CardVariant, Keyframes> = {
+    primary: keyframes`
         0%, 100% {
             filter: drop-shadow(0px 0px 2px ${variants.primary.dark});
         }
@@ -31,7 +31,7 @@ const animations: Record<string, Keyframes> = {
             filter: drop-shadow(0px 0px 4px ${variants.primary.medium});
         }
     `,
-    glowSecondary: keyframes`
+    secondary: keyframes`
         0%, 100% {
             filter: drop-shadow(0px 0px 2px ${variants.secondary.dark});
         }
@@ -99,7 +99,7 @@ const variantStyles: Record<CardVariant, { grid: SerializedStyles, background: S
 
             [class^="stroke"] {
                 filter: drop-shadow(0px 0px 3px ${variants.primary.dark});
-                animation-name: ${animations.glowPrimary};
+                animation-name: ${animations.primary};
             }
 
             .stroke-bottom {
@@ -121,7 +121,7 @@ const variantStyles: Record<CardVariant, { grid: SerializedStyles, background: S
 
             [class^="stroke"] {
                 filter: drop-shadow(0px 0px 3px ${variants.secondary.dark});
-                animation-name: ${animations.glowSecondary};
+                animation-name: ${animations.secondary};
             }
 
             .stroke-bottom {
@@ -177,7 +177,7 @@ const SideVertical = ({ rotation, animation }: SideProps) => (
 /**
  * @Note Only using emotion on top level component to reduce repeated <style> tags rendering
  */
-export const OutlineCard = ({ tl, tr, bl, br, children, animation, cornerSize, variant = 'secondary' }: OutlineCardProps) => (
+export const OutlineCard = ({ tl, tr, bl, br, children, animation, cornerSize, variant = 'primary' }: OutlineCardProps) => (
     <div css={outlineCardStyles.container}>
         <div css={variantStyles[variant].background}>
             <Card customClassName="card" tl={tl} tr={tr} bl={bl} cornerSize={cornerSize} />

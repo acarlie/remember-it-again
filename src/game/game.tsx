@@ -50,12 +50,12 @@ export const Game = () => {
             {status !== 'start' && <Play />}
 
             <Modal isOpen={isWinModalOpen} toggle={toggleWinModal} title="You Won!">
-                <Button variant='primary' onClick={restart}>New Game</Button>
+                <Button onClick={restart}>New Game</Button>
             </Modal>
             <Modal isOpen={isLoseModalOpen} toggle={toggleLoseModal} title={picked.length >= topScore ? "New High Score!" : "Game Over"}>
                 <p>Score: {picked.length}</p>
                 <p>Top Score: {topScore}</p>
-                <Button variant='primary' onClick={restart}>New Game</Button>
+                <Button onClick={restart}>New Game</Button>
             </Modal>
         </main >
 

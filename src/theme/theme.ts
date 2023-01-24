@@ -6,16 +6,22 @@ type Neutral = `neutral${typeof neutralSteps[number]}`
 const nonNeutralSteps = [100, 200, 300]
 type NonNeutralStep = typeof nonNeutralSteps[number]
 
-
 export type ColorValue = `hsla(${string})`
 export type Color = `primary${NonNeutralStep}` | `fuschia${NonNeutralStep}` | `lime${NonNeutralStep}` | `green${NonNeutralStep}` | Neutral
 
 type Font = 'heading' | 'text'
+type FontWeight = 'light' | 'regular' | 'medium' | 'semibold'
 type Radius = 'small' | 'medium' | 'large'
+type LineHeight = 'single' | 'text' | 'heading'
+type FontSize = 't100' | 't200' | 't300' | 't400' | 'h100' | 'h200' | 'h300' | 'h400' | 'h500' | 'h600'
 
 type Theme = {
     color: Record<Color, ColorValue>
     font: Record<Font, string>
+    fontColor: Record<Font, ColorValue>
+    fontSize: Record<FontSize, RemValue>
+    fontWeight: Record<FontWeight, number>
+    lineHeight: Record<LineHeight, number>
     radius: Record<Radius, RemValue>
 }
 
@@ -42,15 +48,42 @@ export const theme: Theme = {
         neutral700: 'hsla(240, 32%, 80%, 1)',
         neutral800: 'hsla(240, 32%, 96%, 1)',
     },
+    font: {
+        heading: '"Rajdhani", sans-serif',
+        text: '"Rajdhani", sans-serif',
+    },
+    fontColor: {
+        heading: "hsla(240, 32%, 96%, 1)",
+        text: "hsla(240, 32%, 80%, 1)",
+    },
+    fontSize: {
+        t100: "1.25rem",
+        t200: "1rem",
+        t300: ".875rem",
+        t400: ".75rem",
+        h100: "3rem",
+        h200: "2.25rem",
+        h300: "1.75rem",
+        h400: "1.375rem",
+        h500: "1rem",
+        h600: ".75rem",
+    },
+    fontWeight: {
+        light: 300,
+        regular: 400,
+        medium: 500,
+        semibold: 600,
+    },
+    lineHeight: {
+        single: 1,
+        text: 1.5,
+        heading: 1.25
+    },
     radius: {
         small: '.25rem',
         medium: '1rem',
         large: '2rem'
     },
-    font: {
-        heading: 'Rajdhani',
-        text: 'Rajdhani'
-    }
 }
 
 export const updateOpacity = (color: ColorValue, opacity: number) => opacity <= 1 && opacity >= 0 ? color.replace('1)', `${opacity})`) as ColorValue : color

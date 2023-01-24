@@ -1,2 +1,2 @@
-export * from './game'
 export * from './game-provider'
+export * from './game'

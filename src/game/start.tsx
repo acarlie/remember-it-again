@@ -3,7 +3,8 @@
 import { css } from '@emotion/react'
 import { GameContext } from './game-provider'
 import { StyleRecord, centerContent } from '../utilities'
-import { Text, OutlineCard, Button } from '../components'
+import { OutlineCard, Button } from '../components'
+import { theme } from '../theme'
 import * as React from 'react'
 
 const startStyles: StyleRecord = {
@@ -17,6 +18,13 @@ const startStyles: StyleRecord = {
         flex-direction: column;
         gap: 1rem;
     `,
+    title: css`
+        font-weight: ${theme.fontWeight.semibold};
+        line-height: ${theme.lineHeight.single};
+        font-size: ${theme.fontSize.h200};
+        color: ${theme.fontColor.heading};
+        text-transform: uppercase;
+    `,
     topRow: css`
         display: flex;
         justify-content: flex-end;
@@ -25,6 +33,7 @@ const startStyles: StyleRecord = {
     wrapper: css`
         ${centerContent({ h: true, v: true, g: '0rem' })}
     `,
+
 }
 
 export const Start = () => {
@@ -37,9 +46,9 @@ export const Start = () => {
                 </div>
                 <OutlineCard bl variant='primary' animation={{ length: 3000, delay: 0 }}>
                     <div css={startStyles.mainCard}>
-                        <Text tag="h2" variant="heading1">To Boldy Go</Text>
-                        <Text tag='p' variant='textMD'>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</Text>
-                        <Button variant='primary' onClick={start}>Play</Button>
+                        <h2 css={startStyles.title}>To Boldy Go</h2>
+                        <p>Explore strange new worlds. Click on a planet to play, but don't go to the same planet twice!</p>
+                        <Button onClick={start}>Play</Button>
                     </div>
                 </OutlineCard>
             </div>

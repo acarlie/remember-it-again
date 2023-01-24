@@ -2,7 +2,6 @@
 
 import { css } from '@emotion/react'
 import { updateOpacity, theme } from '../theme'
-import { Text } from './text'
 import { StyleRecord } from '../utilities'
 
 interface ModalProps {
@@ -19,7 +18,13 @@ const modalStyles: StyleRecord = {
         flex-direction: column;
         gap: 1rem;
     `,
-    modalWrapper: css`
+    title: css`
+        font-weight: ${theme.fontWeight.semibold};
+        line-height: ${theme.lineHeight.heading};
+        font-size: ${theme.fontSize.h200};
+        color: ${theme.fontColor.heading};
+    `,
+    wrapper: css`
         align-items: center;
         backdrop-filter: blur( 6.5px );
         -webkit-backdrop-filter: blur( 6.5px );
@@ -41,9 +46,9 @@ const modalStyles: StyleRecord = {
  */
 export const Modal = ({ isOpen, toggle, title, children }: ModalProps) => {
     return (
-        <div role='dialog' aria-modal='true' css={modalStyles.modalWrapper} style={{ display: isOpen ? 'flex' : 'none' }}>
+        <div role='dialog' aria-modal='true' css={modalStyles.wrapper} style={{ display: isOpen ? 'flex' : 'none' }}>
             <div css={modalStyles.modal}>
-                <Text tag='h2' variant='heading1'>{title}</Text>
+                <h2 css={modalStyles.title}>{title}</h2>
                 {children}
             </div>
         </div>

@@ -8,6 +8,8 @@ import { StarField } from './components/star-field'
 const app = css`
   background: ${theme.color.neutral100};
   color: ${theme.color.neutral700};
+  font-size: ${theme.fontSize.t200};
+  line-height: ${theme.lineHeight.text};
   position: relative;
 `
 
