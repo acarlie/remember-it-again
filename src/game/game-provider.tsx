@@ -46,7 +46,7 @@ export const GameProvider = ({ children }: GameProviderProps) => {
     const [gameStatus, setGameStatus] = React.useState<Status>('start')
 
     const checkAnswer = (answer: string) => {
-        const win = picked.length === options.length - 1
+        const win = picked.length === options.length
         const lose = picked.includes(answer)
 
         if (lose) {

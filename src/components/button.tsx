@@ -19,6 +19,7 @@ const buttonStyles = {
         color: ${theme.color.neutral100};
         text-transform: uppercase;
         font-size: 1.125rem;
+        white-space: nowrap;
     
         .card {
             padding: .5rem 1.25rem .4rem 1.125rem;
