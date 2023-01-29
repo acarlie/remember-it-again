@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 22 22">
+    <defs>
+        <filter id="glow" x="-125%" y="-125%" height="400%" width="400%">
+            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="3"></feGaussianBlur>
+        </filter>
+    </defs>
+</svg>

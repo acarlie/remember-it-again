@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 60 22" preserveAspectRatio="none">
+    <filter id="glow-vertical" filterUnits="userSpaceOnUse" x="-100%" y="-100%" height="300%" width="300%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+    </filter>
+</svg>

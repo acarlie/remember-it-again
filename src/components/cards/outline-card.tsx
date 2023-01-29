@@ -5,7 +5,10 @@ import { css, keyframes, Keyframes, SerializedStyles } from "@emotion/react"
 import { defaultCornerSize, CardVariant, GlowAnimationProps, SideProps, CornerProps, OutlineCardProps } from "./card.definitions"
 import { StyleRecord } from '../../utilities';
 import { theme, updateOpacity, ColorValue } from '../../theme';
+import sprite from '../../assets/sprites/glow.svg'
+import spriteVertical from '../../assets/sprites/glow-vertical.svg'
 import CSS from 'csstype';
+import * as React from 'react';
 
 const svgPadding = 2
 const svgCornerSize = 22
@@ -68,8 +71,19 @@ const sharedStyles: StyleRecord = {
         .stroke-bottom {
             stroke-width: 1px;
         }
+
+        .stroke-corner {
+            
+            stroke-width: 3px;
+            stroke: ${updateOpacity(theme.color.primary200, .65)};
+        }
+        .stroke-blur {
+            
+            stroke-width: 3px;
+            stroke: ${updateOpacity(theme.color.primary200, .95)};
+        }
     `,
-    background: css`
+    background: css` 
         height: 100%;
         left: 0;
         padding: ${svgPadding}px;
@@ -98,7 +112,7 @@ const variantStyles: Record<CardVariant, { grid: SerializedStyles, background: S
             ${sharedStyles.grid}
 
             [class^="stroke"] {
-                filter: drop-shadow(0px 0px 3px ${variants.primary.dark});
+                /* filter: drop-shadow(0px 0px 3px ${variants.primary.dark}); */
                 animation-name: ${animations.primary};
             }
 
@@ -120,7 +134,7 @@ const variantStyles: Record<CardVariant, { grid: SerializedStyles, background: S
             ${sharedStyles.grid}
 
             [class^="stroke"] {
-                filter: drop-shadow(0px 0px 3px ${variants.secondary.dark});
+                /* filter: drop-shadow(0px 0px 3px ${variants.secondary.dark}); */
                 animation-name: ${animations.secondary};
             }
 
@@ -154,6 +168,14 @@ const Corner = ({ rotation, animation, isClipped, cornerSize = defaultCornerSize
 
     return (
         <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 22 22">
+            {/* <filter id="glow" x="-100%" y="-100%" height="300%" width="300%"> */}
+            {/* <feOffset result="offOut" in="SourceGraphic" dx="0" dy="0"></feOffset> */}
+            {/* <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2"></feGaussianBlur> */}
+            {/* <feBlend in="SourceGraphic" in2="blurOut" mode="overlay"></feBlend> */}
+            {/* </filter> */}
+            {/* {process.env.PUBLIC_URL + '/assets/images/sm/' + props.img} 
+            `/static/images/sprites.svg#${name}` */}
+            <path className="stroke-corner" filter={`url(${sprite}#glow)`} d={path} />
             <path className="stroke-bottom" d={path} style={animation && getAnimationStyles(animation)} />
             <path className="stroke-top" d={path} style={animation && getAnimationStyles(animation)} />
         </svg>
@@ -161,18 +183,39 @@ const Corner = ({ rotation, animation, isClipped, cornerSize = defaultCornerSize
 }
 
 const SideHorizontal = ({ rotation, animation }: SideProps) => (
-    <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 60 22" preserveAspectRatio="none">
-        <line className="stroke-bottom" x1="60" y1="2" y2="2" style={animation && getAnimationStyles(animation)} />
-        <line className="stroke-top" x1="60" y1="2" y2="2" style={animation && getAnimationStyles(animation)} />
+    <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 200 22" preserveAspectRatio="none">
+
+        <filter id="blurMe" filterUnits="userSpaceOnUse" x="-200%" y="-200%" height="600%" width="600%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+        </filter>
+        <line className="stroke-blur" x1="200" y1="2" y2="2" filter="url(#blurMe)" />
+        <line className="stroke-bottom" x1="200" y1="2" y2="2" style={animation && getAnimationStyles(animation)} />
+        <line className="stroke-top" x1="200" y1="2" y2="2" style={animation && getAnimationStyles(animation)} />
     </svg>
 )
 
-const SideVertical = ({ rotation, animation }: SideProps) => (
-    <svg className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 22 16" preserveAspectRatio="none">
-        <line className="stroke-bottom" x1="2" x2="2" y2="16" style={animation && getAnimationStyles(animation)} />
-        <line className="stroke-top" x1="2" x2="2" y2="16" style={animation && getAnimationStyles(animation)} />
-    </svg>
-)
+const SideVertical = ({ rotation, animation }: SideProps) => {
+    const svg = React.useRef<any | undefined>(undefined);
+    const height = React.useRef<number>(16)
+    console.log(height)
+
+    React.useEffect(() => {
+        height.current = svg.current.scrollHeight
+        console.log(height.current)
+    }, [svg]);
+
+    return (
+
+        <svg ref={svg} className="container" style={{ transform: `rotate(${rotation}deg)` }} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox={`0 0 22 ${height.current}`} preserveAspectRatio="none">
+            <filter id="blurMe2" filterUnits="userSpaceOnUse" x="-100%" y="-100%" height="300%" width="300%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+            </filter>
+            <line className="stroke-blur" x1="2" x2="2" y2={height.current} filter={`url(${spriteVertical}#glow-vertical)`} />
+            <line className="stroke-bottom" x1="2" x2="2" y2={height.current} style={animation && getAnimationStyles(animation)} />
+            <line className="stroke-top" x1="2" x2="2" y2={height.current} style={animation && getAnimationStyles(animation)} />
+        </svg>
+    )
+}
 
 /**
  * @Note Only using emotion on top level component to reduce repeated <style> tags rendering
